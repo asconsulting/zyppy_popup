@@ -1,0 +1,39 @@
+{
+    "name":"asconsulting/zyppy_popup",
+    "description":"A popup Module for Contao 4+.",
+    "homepage": "https://andrewstevens.consulting",
+    "keywords":["contao", "popup", "pop-up", "overlay"],
+    "type":"contao-module",
+    "license":"LGPL-3.0-or-later",
+    "authors":[
+        {
+            "name":"Andrew Stevens",
+            "homepage":"https://andrewstevens.consulting"
+        }
+    ],
+    "require":{
+        "php": "~5.4 || ~7.0",
+        "contao/core-bundle": "~4.4"
+    },
+    "require-dev": {
+        "contao/manager-plugin": "^2.0"
+    },
+    "autoload": {
+        "psr-0": {
+            "Asc\\": [
+                "system/modules/zyppy_popup/library"
+            ],
+			"Contao\\": [
+                "system/modules/zyppy_popup/library"
+            ]
+        }
+    },
+    "extra": {
+        "contao": {
+            "sources": {
+                "system/modules/zyppy_popup": "system/modules/zyppy_popup"
+            }
+        }
+    },
+    "minimum-stability": "dev"
+}
