@@ -27,5 +27,6 @@ ClassLoader::addClasses(array
  */
 TemplateLoader::addFiles(array
 (
-    'fe_popup_wrapper' 					=> 'system/modules/asc_directory/templates/frontend',
+    'fe_popup_wrapper' 					=> 'system/modules/zyppy_popup/templates/frontend',
+	'mod_article' 						=> 'system/modules/zyppy_popup/templates/modules',
 ));
