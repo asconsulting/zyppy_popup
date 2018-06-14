@@ -27,6 +27,9 @@ class ZyppyPopup extends \Backend
 		{
 			return 'popup';
 		} else {
+			if ($varValue == 'popup') {
+				return 'main';
+			}
 			return $varValue;
 		}
 	}
@@ -36,6 +39,9 @@ class ZyppyPopup extends \Backend
 		{
 			return 'popup';
 		} else {
+			if ($varValue == 'popup') {
+				return 'main';
+			}
 			return $varValue;
 		}
 	}
