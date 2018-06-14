@@ -160,6 +160,10 @@ echo "<br><hr><br><br>";
 						$objPopupWrapperTemplate->popupAddClose = $arrModule['mod']->popupAddClose;
 						$objPopupWrapperTemplate->body = $this->getFrontendModule($arrModule['mod'], $arrModule['col']);
 						
+						echo "<h4>Template</h4>";
+						var_dump($objPopupWrapperTemplate);
+						echo "<br><br>";
+						
 						//$arrCustomSections[$arrModule['col']] .= $objPopupWrapperTemplate->parse();
 						$arrCustomSections['main'] .= $objPopupWrapperTemplate->parse();
 					}
