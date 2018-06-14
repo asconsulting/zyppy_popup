@@ -146,9 +146,6 @@ echo "<br><hr><br><br>";
 				else
 				{
 					if ($arrModule['mod']->popup) {
-						echo "<h4>Module</h4>";
-						var_dump($arrModule['mod']);
-						echo "<br><br>";
 						$objPopupWrapperTemplate = new \FrontendTemplate('fe_popup_wrapper');
 						$objPopupWrapperTemplate->popup = 1;
 						$objPopupWrapperTemplate->popupUuid = $arrModule['mod']->popupUuid;
@@ -160,14 +157,11 @@ echo "<br><hr><br><br>";
 						$objPopupWrapperTemplate->popupAddClose = $arrModule['mod']->popupAddClose;
 						$objPopupWrapperTemplate->body = $this->getFrontendModule($arrModule['mod'], $arrModule['col']);
 						
-						echo "<h4>Template</h4>";
-						var_dump($objPopupWrapperTemplate);
-						echo "<br><br>";
-						
-						//$arrCustomSections[$arrModule['col']] .= $objPopupWrapperTemplate->parse();
-						//$arrCustomSections['main'] .= $objPopupWrapperTemplate->parse();
+						$arrCustomSections[$arrModule['col']] .= $objPopupWrapperTemplate->parse();
+						$arrCustomSections['main'] .= $objPopupWrapperTemplate->parse();
+					} else {
+						$arrCustomSections[$arrModule['col']] .= $this->getFrontendModule($arrModule['mod'], $arrModule['col']);
 					}
-					$arrCustomSections[$arrModule['col']] .= $this->getFrontendModule($arrModule['mod'], $arrModule['col']);
 				}
 			}
 		}
