@@ -133,6 +133,7 @@ class ZyppyPopup extends \Backend
 					}
 				}
 			}
+			$arrSections[] = 'popup';
 		}
 
 		// Show all sections (e.g. "override all" mode)
