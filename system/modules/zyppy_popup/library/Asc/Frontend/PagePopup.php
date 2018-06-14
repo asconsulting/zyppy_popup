@@ -146,7 +146,9 @@ echo "<br><hr><br><br>";
 				else
 				{
 					if ($arrModule['mod']->popup) {
-						
+						echo "<h4>Module</h4>";
+						var_dump($arrModule['mod']);
+						echo "<br><br>";
 						$objPopupWrapperTemplate = new \FrontendTemplate('fe_popup_wrapper');
 						$objPopupWrapperTemplate->popup = 1;
 						$objPopupWrapperTemplate->popupUuid = $arrModule['mod']->popupUuid;
