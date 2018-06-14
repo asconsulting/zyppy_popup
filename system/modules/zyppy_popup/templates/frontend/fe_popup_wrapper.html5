@@ -3,6 +3,7 @@
 <div class='popup_inside'>
 <?php if ($this->popupAddClose): ?><a class='close' href='#'></a><?php endif; ?>
 <?php endif; ?>	
+<h3>Test</h3>
 <?php echo $this->body; ?>
 <?php if ($this->popup): ?>
 </div>
