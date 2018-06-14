@@ -68,7 +68,7 @@ class ZyppyPopup extends \Backend
 		}
 	}
 	
-	public function generateUuid($varValue, DataContainer $dc)
+	public function generateArticleUuid($varValue, DataContainer $dc)
 	{
 		if ($dc->activeRecord->popup) {
 			$autoUuid = false;
