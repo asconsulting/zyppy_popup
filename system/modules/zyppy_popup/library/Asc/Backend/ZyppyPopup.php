@@ -41,7 +41,6 @@ class ZyppyPopup extends \Backend
 				$dc->activeRecord->inColumn = 'main';
 			}
 		}
-		$dc->activeRecord->save();
 	}
 	
 	public function loadLayoutSections($varValue, DataContainer $dc) 
