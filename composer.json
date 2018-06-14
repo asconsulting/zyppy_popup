@@ -1,6 +1,6 @@
 {
     "name":"asconsulting/zyppy_popup",
-    "description":"A popup Module for Contao 4+.",
+    "description":"A popup Module for Contao 4.x",
     "homepage": "https://andrewstevens.consulting",
     "keywords":["contao", "popup", "pop-up", "overlay"],
     "type":"contao-module",

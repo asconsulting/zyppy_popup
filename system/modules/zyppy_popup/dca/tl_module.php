@@ -26,7 +26,7 @@ $GLOBALS['TL_DCA']['tl_module']['subpalettes']['popup'] = 'popupUuid,popupDelay,
 $GLOBALS['TL_DCA']['tl_module']['fields']['inColumn']['options_callback'] = array('Asc\Backend\ZyppyPopup', 'getActiveLayoutSections');
 
 $GLOBALS['TL_DCA']['tl_module']['fields']['popup'] = array(
-	'exclude'                 => true,
+	'filter'				  => true,
 	'label'                   => &$GLOBALS['TL_LANG']['tl_module']['popup'],
 	'inputType'               => 'checkbox',
 	'eval'                    => array('submitOnChange'=>true),
@@ -49,7 +49,7 @@ $GLOBALS['TL_DCA']['tl_module']['fields']['popupUuid'] = array
 
 $GLOBALS['TL_DCA']['tl_module']['fields']['popupDelay'] = array
 (
-	'exclude'                 => true,
+	'filter'				  => true,
 	'label'                   => &$GLOBALS['TL_LANG']['tl_module']['popupDelay'],
 	'inputType'               => 'text',
 	'eval'                    => array('rgxp'=>'natural', 'tl_class'=>'w50'),
@@ -58,7 +58,6 @@ $GLOBALS['TL_DCA']['tl_module']['fields']['popupDelay'] = array
 
 $GLOBALS['TL_DCA']['tl_module']['fields']['popupReshowDelay'] = array
 (
-	'exclude'                 => true,
 	'label'                   => &$GLOBALS['TL_LANG']['tl_module']['popupReshowDelay'],
 	'inputType'               => 'text',
 	'eval'                    => array('rgxp'=>'digit', 'tl_class'=>'w50'),
@@ -67,7 +66,6 @@ $GLOBALS['TL_DCA']['tl_module']['fields']['popupReshowDelay'] = array
 		
 $GLOBALS['TL_DCA']['tl_module']['fields']['popupScrollTrigger'] = array
 (
-	'exclude'                 => true,
 	'label'                   => &$GLOBALS['TL_LANG']['tl_module']['popupScrollTrigger'],
 	'inputType'               => 'text',
 	'eval'                    => array('rgxp'=>'natural', 'tl_class'=>'w50'),
@@ -76,7 +74,6 @@ $GLOBALS['TL_DCA']['tl_module']['fields']['popupScrollTrigger'] = array
 
 $GLOBALS['TL_DCA']['tl_module']['fields']['popupFadeDuration'] = array
 (
-	'exclude'                 => true,
 	'label'                   => &$GLOBALS['TL_LANG']['tl_module']['popupFadeDuration'],
 	'inputType'               => 'text',
 	'eval'                    => array('rgxp'=>'natural', 'tl_class'=>'w50'),
@@ -86,7 +83,6 @@ $GLOBALS['TL_DCA']['tl_module']['fields']['popupFadeDuration'] = array
 $GLOBALS['TL_DCA']['tl_module']['fields']['popupTrigger'] = array
 (
 	'label'                   => &$GLOBALS['TL_LANG']['tl_module']['popupTrigger'],
-	'exclude'                 => true,
 	'search'                  => true,
 	'inputType'               => 'text',
 	'eval'                    => array('tl_class'=>'w50'),
@@ -97,5 +93,6 @@ $GLOBALS['TL_DCA']['tl_module']['fields']['popupAddClose'] = array(
 	'exclude'                 => true,
 	'label'                   => &$GLOBALS['TL_LANG']['tl_module']['popupAddClose'],
 	'inputType'               => 'checkbox',
+	'eval'                    => array('tl_class'=>'m12 w50'),
 	'sql'                     => "char(1) NOT NULL default ''"
 );

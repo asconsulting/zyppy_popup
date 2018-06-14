@@ -14,11 +14,8 @@ namespace Asc\Widget;
 
 use Contao\ModuleWizard;
 
-/**
- * Provide methods to handle modules of a page layout.
- *
- * @author Leo Feyer <https://github.com/leofeyer>
- */
+
+
 class PopupModuleWizard extends ModuleWizard
 {
 
