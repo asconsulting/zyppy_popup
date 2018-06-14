@@ -15,7 +15,10 @@
  */
 ClassLoader::addClasses(array
 (
-	'Asc\Backend\ZyppyPopup' 			=> 'system/modules/zyppy_popup/library/Asc/Backend/ZyppyPopup.php'
+	'Asc\Backend\ZyppyPopup' 			=> 'system/modules/zyppy_popup/library/Asc/Backend/ZyppyPopup.php',
+	'Asc\Frontend\PagePopup' 			=> 'system/modules/zyppy_popup/library/Asc/Frontend/PagePopup.php',
+	'Asc\Module\PopupArticle' 			=> 'system/modules/zyppy_popup/library/Asc/Module/PopupArticle.php',
+	'Asc\Widget\ModuleWizard' 			=> 'system/modules/zyppy_popup/library/Asc/Widget/ModuleWizard.php',
 ));
 
 
