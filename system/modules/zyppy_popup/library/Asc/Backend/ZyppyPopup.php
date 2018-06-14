@@ -23,7 +23,7 @@ class ZyppyPopup extends \Backend
 	
 	public function loadLayoutSections($varValue, DataContainer $dc) {
 		
-		var_dump($dc->activeRecord);
+		var_dump($dc->activeRecord->popup);
 		exit();
 		
 		if ($dc->activeRecord->popup == 1)
