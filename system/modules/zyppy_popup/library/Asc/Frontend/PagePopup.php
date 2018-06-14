@@ -145,6 +145,7 @@ class PagePopup extends PageRegular
 				else
 				{
 					if ($arrModule['mod']->popup) {
+						
 						$objPopupWrapperTemplate = new \FrontendTemplate('fe_popup_wrapper');
 						$objPopupWrapperTemplate->popup = 1;
 						$objPopupWrapperTemplate->popupUuid = $arrModule['mod']->popupUuid;
