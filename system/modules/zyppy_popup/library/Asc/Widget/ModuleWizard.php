@@ -12,7 +12,7 @@
  
 namespace Asc\Widget;
 
-use Contao\ModuleWizard
+use Contao\ModuleWizard;
 
 /**
  * Provide methods to handle modules of a page layout.
