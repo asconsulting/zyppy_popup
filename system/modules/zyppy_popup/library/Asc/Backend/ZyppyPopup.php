@@ -21,11 +21,8 @@ use Contao\PageModel;
 class ZyppyPopup extends \Backend
 {
 	
-	public function loadLayoutSections($varValue, DataContainer $dc) {
-		
-		var_dump($dc->activeRecord->popup);
-		exit();
-		
+	public function loadLayoutSections($varValue, DataContainer $dc) 
+	{
 		if ($dc->activeRecord->popup == 1)
 		{
 			return 'popup';
