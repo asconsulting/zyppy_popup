@@ -21,6 +21,29 @@ use Contao\PageModel;
 class ZyppyPopup extends \Backend
 {
 	
+	public function loadArticle(DataContainer $dc) 
+	{
+		if ($dc->activeRecord->popup == 1) {
+			$dc->activeRecord->inColumn = 'popup';
+		} else {
+			if ($dc->activeRecord->inColumn == 'popup') {
+				$dc->activeRecord->inColumn = 'main';
+			}
+		}
+	}
+
+	public function saveArticle(DataContainer $dc) 
+	{
+		if ($dc->activeRecord->popup == 1) {
+			$dc->activeRecord->inColumn = 'popup';
+		} else {
+			if ($dc->activeRecord->inColumn == 'popup') {
+				$dc->activeRecord->inColumn = 'main';
+			}
+		}
+		$dc->activeRecord->save();
+	}
+	
 	public function loadLayoutSections($varValue, DataContainer $dc) 
 	{
 		if ($dc->activeRecord->popup == 1)

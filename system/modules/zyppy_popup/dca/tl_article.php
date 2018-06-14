@@ -9,6 +9,9 @@
  * @link       https://andrewstevens.consulting
  */
  
+ 
+$GLOBALS['TL_DCA']['tl_article']['config']['onload_callback'][] = array('Asc\Backend\ZyppyPopup', 'loadArticle');
+$GLOBALS['TL_DCA']['tl_article']['config']['onsubmit_callback'][] = array('Asc\Backend\ZyppyPopup', 'saveArticle');
 
 /**
  * Palettes
