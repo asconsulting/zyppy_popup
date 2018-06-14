@@ -1,0 +1,10 @@
+<?php if ($this->popup): ?>
+<div class="popup_frame pre_init"<?php echo ($this->popupUuid ? ' puid="' .$this->popupUuid .'"' : '') ?><?php echo ($this->popupDelay ? ' pdelay="' .$this->popupDelay .'"' : '') ?><?php echo ($this->popupReshowDelay ? ' rdelay="' .$this->popupReshowDelay .'"' : '') ?><?php echo ($this->popupScrollTrigger ? ' strigger="' .$this->popupScrollTrigger .'"' : '') ?><?php echo ($this->popupFadeDuration ? ' fduration="' .$this->popupFadeDuration .'"' : '') ?><?php echo ($this->popupTrigger ? ' ptrigger="' .$this->popupTrigger .'"' : '') ?>>
+<div class='popup_inside'>
+<?php if ($this->popupAddClose): ?><a class='close' href='#'></a><?php endif; ?>
+<?php endif; ?>	
+<?php echo $this->body; ?>
+<?php if ($this->popup): ?>
+</div>
+</div>
+<?php endif; ?>	

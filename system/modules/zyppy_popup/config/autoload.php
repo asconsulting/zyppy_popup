@@ -15,5 +15,14 @@
  */
 ClassLoader::addClasses(array
 (
-	'Asc\Backend\ZyppyPopup' 					=> 'system/modules/zyppy_popup/library/Asc/Backend/ZyppyPopup.php'
+	'Asc\Backend\ZyppyPopup' 			=> 'system/modules/zyppy_popup/library/Asc/Backend/ZyppyPopup.php'
+));
+
+
+/**
+ * Register the templates
+ */
+TemplateLoader::addFiles(array
+(
+    'fe_popup_wrapper' 					=> 'system/modules/asc_directory/templates/frontend',
 ));

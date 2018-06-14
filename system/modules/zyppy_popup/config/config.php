@@ -11,6 +11,12 @@
  
  
 /**
+ * Pages
+ */ 
+$GLOBALS['TL_PTY']['regular'] = 'Asc\Frontend\PagePopup';
+	
+	
+/**
  * Widgets
  */ 
 $GLOBALS['BE_FFL']['moduleWizard'] = 'Asc\Widget\PopupModuleWizard';

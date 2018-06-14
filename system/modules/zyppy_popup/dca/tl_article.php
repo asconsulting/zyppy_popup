@@ -101,5 +101,6 @@ $GLOBALS['TL_DCA']['tl_article']['fields']['popupAddClose'] = array(
 	'exclude'                 => true,
 	'label'                   => &$GLOBALS['TL_LANG']['tl_article']['popupAddClose'],
 	'inputType'               => 'checkbox',
+	'eval'                    => array('tl_class'=>'m12 w50'),
 	'sql'                     => "char(1) NOT NULL default ''"
 );
