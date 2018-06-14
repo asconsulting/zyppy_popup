@@ -157,7 +157,8 @@ class PagePopup extends PageRegular
 						$objPopupWrapperTemplate->popupAddClose = $arrModule['mod']->popupAddClose;
 						$objPopupWrapperTemplate->body = $this->getFrontendModule($arrModule['mod'], $arrModule['col']);
 						
-						$arrCustomSections[$arrModule['col']] .= $objPopupWrapperTemplate->parse();
+						//$arrCustomSections[$arrModule['col']] .= $objPopupWrapperTemplate->parse();
+						$arrCustomSections['main'] .= $objPopupWrapperTemplate->parse();
 					}
 					$arrCustomSections[$arrModule['col']] .= $this->getFrontendModule($arrModule['mod'], $arrModule['col']);
 				}
