@@ -118,7 +118,8 @@ class PagePopup extends PageRegular
 				{
 					$arrModule['mod'] = $arrMapper[$arrModule['mod']];
 				}
-
+var_dump($arrModule);
+echo "<br><hr><br><br>";
 				// Generate the modules
 				if (\in_array($arrModule['col'], $arrSections) && $arrModule['col'] != 'popup')
 				{
