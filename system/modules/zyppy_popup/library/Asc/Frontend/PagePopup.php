@@ -165,7 +165,7 @@ echo "<br><hr><br><br>";
 						echo "<br><br>";
 						
 						//$arrCustomSections[$arrModule['col']] .= $objPopupWrapperTemplate->parse();
-						$arrCustomSections['main'] .= $objPopupWrapperTemplate->parse();
+						//$arrCustomSections['main'] .= $objPopupWrapperTemplate->parse();
 					}
 					$arrCustomSections[$arrModule['col']] .= $this->getFrontendModule($arrModule['mod'], $arrModule['col']);
 				}
