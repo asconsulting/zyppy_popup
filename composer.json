@@ -22,9 +22,6 @@
         "psr-0": {
             "Asc\\": [
                 "system/modules/zyppy_popup/library"
-            ],
-			"Contao\\": [
-                "system/modules/zyppy_popup/library"
             ]
         }
     },
