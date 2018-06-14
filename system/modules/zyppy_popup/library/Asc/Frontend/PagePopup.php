@@ -145,7 +145,7 @@ class PagePopup extends PageRegular
 				else
 				{
 					if ($arrModule['mod']->popup) {
-						if (!in_array('system/modules/zyppy_popup/js/popup.js', $GLOBALS['TL_JAVASCRIPT']) { 
+						if (!in_array('system/modules/zyppy_popup/js/popup.js', $GLOBALS['TL_JAVASCRIPT'])) { 
 							$GLOBALS['TL_JAVASCRIPT'][] = 'system/modules/zyppy_popup/js/popup.js';
 						}
 						
