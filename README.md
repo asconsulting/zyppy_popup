@@ -4,7 +4,7 @@
 
 
 ## Initial Setup ##
-* Create a custom section in Page Layouts with a Tile of "Pop-up" and and ID of "popup". The rest you can configure to your needs.
+* Create a custom section in Page Layouts with a Title of "Pop-up" and and ID of "popup". The rest you can configure to your needs.
 * Configure pop-up settings by editing Articles and Modules.
 
 
