@@ -10,5 +10,5 @@
 
 ## Notes ##
 
-* Articles and modules configured for pop-ups should be placed in the "Pop-up" pay layout section.
+* Articles and modules configured for pop-ups should be placed in the "Pop-up" page layout section.
 * To edit templates (close button, etc), see "fe_popup_wrapper" for Module pop-ups and "mod_article" for Article Popups.
