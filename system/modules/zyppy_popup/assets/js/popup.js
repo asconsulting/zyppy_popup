@@ -62,7 +62,7 @@
 					if (showPopup) {
 						showPopup = false;
 						if (fade_duration > 0) {
-							popup.css('opacity', "0").css('display', "block").fadeTo(fade_duration, 1);
+							popup.css({"opacity": "0", "display": "block"}).fadeTo(fade_duration, 1);
 						} else {
 							popup.css("display", "block");
 						}
