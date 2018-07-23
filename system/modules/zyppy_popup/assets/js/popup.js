@@ -62,9 +62,9 @@
 					if (showPopup) {
 						showPopup = false;
 						if (fade_duration > 0) {
-							popup.css({"opacity": "0", "display": "block"}).fadeTo(fade_duration, 1);
+							popup.css({"opacity": "0", "display": "initial"}).fadeTo(fade_duration, 1).removeClass('popup_closed').addClass('popup_open');
 						} else {
-							popup.css("display", "block");
+							popup.css("display", "block").removeClass('popup_closed').addClass('popup_open');
 						}
 						createCookie(puid + "_showTime", timeNow, (Math.floor(reshow_delay / 1440) + 1));
 						
@@ -84,14 +84,14 @@
 							}
 							
 							if (close_popup) {
-								popup.css("display", "none");
+								popup.css("display", "none").removeClass('popup_open').addClass('popup_closed');
 								showPopup = true;
 							}
 						});
 						
 						popup.find(".close").click(function(el){
 							el.preventDefault();
-							popup.css("display", "none");
+							popup.css("display", "none").removeClass('popup_open').addClass('popup_closed');
 							showPopup = true;
 						})
 					}
