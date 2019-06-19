@@ -94,6 +94,8 @@
 							popup.css("display", "none").removeClass('popup_open').addClass('popup_closed');
 							showPopup = true;
 						})
+						
+						popup.find('div.mod_zyppy_search div.results.popup_clear').empty();
 					}
 				};
 			

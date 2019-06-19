@@ -22,6 +22,7 @@ $GLOBALS['TL_LANG']['tl_module']['popupFadeDuration'] 		= array("Fade Duration",
 $GLOBALS['TL_LANG']['tl_module']['popupTrigger'] 			= array("Trigger", "CSS selector that will trigger the popup.");
 $GLOBALS['TL_LANG']['tl_module']['popupUuid'] 				= array("Unique ID", "Auto generated unique ID for popup.");
 $GLOBALS['TL_LANG']['tl_module']['popupAddClose'] 			= array("Add Close Button", "Add a close button to the popup.");
+$GLOBALS['TL_LANG']['tl_module']['popupClear'] 				= array("Clear on Popup", "Clear results when popup opened.");
 
 /**
  * Legends
