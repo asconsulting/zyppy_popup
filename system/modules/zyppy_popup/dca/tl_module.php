@@ -21,8 +21,10 @@ if ($GLOBALS['TL_DCA']['tl_module']['palettes']['zyppy_search']) {
 	$GLOBALS['TL_DCA']['tl_module']['palettes']['zyppy_search'] = str_replace(',disableAjax;', ',disableAjax,popupClear;', $GLOBALS['TL_DCA']['tl_module']['palettes']['zyppy_search']);
 }
 $GLOBALS['TL_DCA']['tl_module']['palettes']['__selector__'][] = 'popup';
-$GLOBALS['TL_DCA']['tl_module']['subpalettes']['popup'] = 'popupUuid,popupDelay,popupReshowDelay,popupScrollTrigger,popupFadeDuration,popupTrigger,popupAddClose';
+$GLOBALS['TL_DCA']['tl_module']['palettes']['__selector__'][] = 'popupAccept';
 
+$GLOBALS['TL_DCA']['tl_module']['subpalettes']['popup'] = 'popupUuid,popupDelay,popupReshowDelay,popupScrollTrigger,popupFadeDuration,popupTrigger,popupAddClose,popupAccept';
+$GLOBALS['TL_DCA']['tl_module']['subpalettes']['popupAccept'] 	= 'popupRejectUrl';
 
 /**
  * Fields
@@ -107,4 +109,18 @@ $GLOBALS['TL_DCA']['tl_module']['fields']['popupClear'] = array(
 	'inputType'               => 'checkbox',
 	'eval'                    => array('tl_class'=>'m12 w50'),
 	'sql'                     => "char(1) NOT NULL default ''"
+);
+
+$GLOBALS['TL_DCA']['tl_module']['fields']['popupAccept'] = array(
+	'label'                   => &$GLOBALS['TL_LANG']['tl_module']['popupAccept'],
+	'inputType'               => 'checkbox',
+	'eval'                    => array('submitOnChange'=>true, 'tl_class'=>'w50 clr'),
+	'sql'                     => "char(1) NOT NULL default ''"
+);
+
+$GLOBALS['TL_DCA']['tl_module']['fields']['popupRejectUrl'] = array(
+	'label'                   => &$GLOBALS['TL_LANG']['tl_module']['popupRejectUrl'],
+	'inputType'               => 'text',
+	'eval'                    => array('mandatory'=>true, 'rgxp'=>'url', 'decodeEntities'=>true, 'maxlength'=>255, 'dcaPicker'=>true, 'addWizardClass'=>false, 'tl_class'=>'long clr'),
+	'sql'                     => "varchar(255) NOT NULL default ''"
 );

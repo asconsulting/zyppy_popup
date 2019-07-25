@@ -23,6 +23,8 @@ $GLOBALS['TL_LANG']['tl_module']['popupTrigger'] 			= array("Trigger", "CSS sele
 $GLOBALS['TL_LANG']['tl_module']['popupUuid'] 				= array("Unique ID", "Auto generated unique ID for popup.");
 $GLOBALS['TL_LANG']['tl_module']['popupAddClose'] 			= array("Add Close Button", "Add a close button to the popup.");
 $GLOBALS['TL_LANG']['tl_module']['popupClear'] 				= array("Clear on Popup", "Clear results when popup opened.");
+$GLOBALS['TL_LANG']['tl_module']['popupAccept'] 			= array("Accept Popup", "User must accept popup.");
+$GLOBALS['TL_LANG']['tl_module']['popupAccept'] 			= array("Popup Reject", "Where to redirect user if popup is rejected.");
 
 /**
  * Legends

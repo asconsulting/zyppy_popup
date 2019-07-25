@@ -21,7 +21,10 @@ $GLOBALS['TL_DCA']['tl_article']['config']['onsubmit_callback'][] = array('Asc\B
  */
 $GLOBALS['TL_DCA']['tl_article']['palettes']['default'] = str_replace(';{syndication_legend}', ';{popup_legend},popup;{syndication_legend}', $GLOBALS['TL_DCA']['tl_article']['palettes']['default']);
 $GLOBALS['TL_DCA']['tl_article']['palettes']['__selector__'][] = 'popup';
-$GLOBALS['TL_DCA']['tl_article']['subpalettes']['popup'] = 'popupUuid,popupDelay,popupReshowDelay,popupScrollTrigger,popupFadeDuration,popupTrigger,popupAddClose';
+$GLOBALS['TL_DCA']['tl_article']['palettes']['__selector__'][] = 'popupAccept';
+
+$GLOBALS['TL_DCA']['tl_article']['subpalettes']['popup'] 		= 'popupUuid,popupDelay,popupReshowDelay,popupScrollTrigger,popupFadeDuration,popupTrigger,popupAddClose,popupAccept';
+$GLOBALS['TL_DCA']['tl_article']['subpalettes']['popupAccept'] 	= 'popupRejectUrl';
  
   
 /**
@@ -96,4 +99,18 @@ $GLOBALS['TL_DCA']['tl_article']['fields']['popupAddClose'] = array(
 	'inputType'               => 'checkbox',
 	'eval'                    => array('tl_class'=>'m12 w50'),
 	'sql'                     => "char(1) NOT NULL default ''"
+);
+
+$GLOBALS['TL_DCA']['tl_article']['fields']['popupAccept'] = array(
+	'label'                   => &$GLOBALS['TL_LANG']['tl_article']['popupAccept'],
+	'inputType'               => 'checkbox',
+	'eval'                    => array('submitOnChange'=>true, 'tl_class'=>'w50 clr'),
+	'sql'                     => "char(1) NOT NULL default ''"
+);
+
+$GLOBALS['TL_DCA']['tl_article']['fields']['popupRejectUrl'] = array(
+	'label'                   => &$GLOBALS['TL_LANG']['tl_article']['popupRejectUrl'],
+	'inputType'               => 'text',
+	'eval'                    => array('mandatory'=>true, 'rgxp'=>'url', 'decodeEntities'=>true, 'maxlength'=>255, 'dcaPicker'=>true, 'addWizardClass'=>false, 'tl_class'=>'long clr'),
+	'sql'                     => "varchar(255) NOT NULL default ''"
 );
