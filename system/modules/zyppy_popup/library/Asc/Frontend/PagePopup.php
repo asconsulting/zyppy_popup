@@ -164,7 +164,7 @@ class PagePopup extends PageRegular
 						$objPopupWrapperTemplate->popupFadeDuration = $arrModule['mod']->popupFadeDuration;
 						$objPopupWrapperTemplate->popupTrigger = $arrModule['mod']->popupTrigger;
 						$objPopupWrapperTemplate->popupAddClose = $arrModule['mod']->popupAddClose;
-						$objPopupWrapperTemplate->popupReject = $arrModule['mod']->popupReject;
+						$objPopupWrapperTemplate->popupRejectUrl = $arrModule['mod']->popupRejectUrl;
 						$objPopupWrapperTemplate->body = $this->getFrontendModule($arrModule['mod'], $arrModule['col']);
 						
 						$arrCustomSections[$arrModule['col']] .= $objPopupWrapperTemplate->parse();
