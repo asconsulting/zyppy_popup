@@ -22,6 +22,8 @@ $GLOBALS['TL_LANG']['tl_article']['popupFadeDuration'] 		= array("Fade Duration"
 $GLOBALS['TL_LANG']['tl_article']['popupTrigger'] 			= array("Trigger", "CSS selector that will trigger the popup.");
 $GLOBALS['TL_LANG']['tl_article']['popupUuid'] 				= array("Unique ID", "Auto generated unique ID for popup.");
 $GLOBALS['TL_LANG']['tl_article']['popupAddClose'] 			= array("Add Close Button", "Add a close button to the popup.");
+$GLOBALS['TL_LANG']['tl_article']['popupAccept'] 			= array("Accept Popup", "User must accept popup.");
+$GLOBALS['TL_LANG']['tl_article']['popupRejectUrl'] 			= array("Popup Reject", "Where to redirect user if popup is rejected.");
 
 /**
  * Legends
