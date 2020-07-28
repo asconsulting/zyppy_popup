@@ -31,10 +31,12 @@ class PagePopup extends PageRegular
 		$GLOBALS['TL_LANGUAGE'] = $objPage->language;
 
 		$locale = str_replace('-', '_', $objPage->language);
-		\System::getContainer()->get('request_stack')->getCurrentRequest()->setLocale($locale);
-		\System::getContainer()->get('translator')->setLocale($locale);
 
-		\System::loadLanguageFile('default');
+		$container = System::getContainer();
+		$container->get('request_stack')->getCurrentRequest()->setLocale($locale);
+		$container->get('translator')->setLocale($locale);
+
+		System::loadLanguageFile('default');
 
 		// Static URLs
 		$this->setStaticUrls();
@@ -42,21 +44,11 @@ class PagePopup extends PageRegular
 		// Get the page layout
 		$objLayout = $this->getPageLayout($objPage);
 
-		// HOOK: modify the page or layout object (see #4736)
-		if (isset($GLOBALS['TL_HOOKS']['getPageLayout']) && \is_array($GLOBALS['TL_HOOKS']['getPageLayout']))
-		{
-			foreach ($GLOBALS['TL_HOOKS']['getPageLayout'] as $callback)
-			{
-				$this->import($callback[0]);
-				$this->{$callback[0]}->{$callback[1]}($objPage, $objLayout, $this);
-			}
-		}
-
 		/** @var ThemeModel $objTheme */
 		$objTheme = $objLayout->getRelated('pid');
 
 		// Set the default image densities
-		\System::getContainer()->get('contao.image.picture_factory')->setDefaultDensities($objTheme->defaultImageDensities);
+		$container->get('contao.image.picture_factory')->setDefaultDensities($objLayout->defaultImageDensities);
 
 		// Store the layout ID
 		$objPage->layoutId = $objLayout->id;
@@ -65,10 +57,8 @@ class PagePopup extends PageRegular
 		$objPage->template = $objLayout->template ?: 'fe_page';
 		$objPage->templateGroup = $objTheme->templates;
 
-		// Store the output format
-		list($strFormat, $strVariant) = explode('_', $objLayout->doctype);
-		$objPage->outputFormat = $strFormat;
-		$objPage->outputVariant = $strVariant;
+		// Minify the markup
+		$objPage->minifyMarkup = $objLayout->minifyMarkup;
 
 		// Initialize the template
 		$this->createTemplate($objPage, $objLayout);
@@ -76,7 +66,7 @@ class PagePopup extends PageRegular
 		// Initialize modules and sections
 		$arrCustomSections = array();
 		$arrSections = array('header', 'left', 'right', 'main', 'footer', 'popup');
-		$arrModules = \StringUtil::deserialize($objLayout->modules);
+		$arrModules = StringUtil::deserialize($objLayout->modules);
 
 		$arrModuleIds = array();
 
@@ -90,9 +80,9 @@ class PagePopup extends PageRegular
 		}
 
 		// Get all modules in a single DB query
-		$objModules = \ModuleModel::findMultipleByIds($arrModuleIds);
+		$objModules = ModuleModel::findMultipleByIds($arrModuleIds);
 
-		if ($objModules !== null || $arrModules[0]['mod'] == 0) // see #4137
+		if ($objModules !== null || \in_array(0, $arrModuleIds))
 		{
 			$arrMapper = array();
 
@@ -108,7 +98,7 @@ class PagePopup extends PageRegular
 			foreach ($arrModules as $arrModule)
 			{
 				// Disabled module
-				if (!$arrModule['enable'])
+				if (!BE_USER_LOGGED_IN && !$arrModule['enable'])
 				{
 					continue;
 				}
@@ -123,19 +113,22 @@ class PagePopup extends PageRegular
 				if (\in_array($arrModule['col'], $arrSections) && $arrModule['col'] != 'popup')
 				{
 					// Filter active sections (see #3273)
-					if ($arrModule['col'] == 'header' && $objLayout->rows != '2rwh' && $objLayout->rows != '3rw')
+					if ($objLayout->rows != '2rwh' && $objLayout->rows != '3rw' && $arrModule['col'] == 'header')
 					{
 						continue;
 					}
-					if ($arrModule['col'] == 'left' && $objLayout->cols != '2cll' && $objLayout->cols != '3cl')
+
+					if ($objLayout->cols != '2cll' && $objLayout->cols != '3cl' && $arrModule['col'] == 'left')
 					{
 						continue;
 					}
-					if ($arrModule['col'] == 'right' && $objLayout->cols != '2clr' && $objLayout->cols != '3cl')
+
+					if ($objLayout->cols != '2clr' && $objLayout->cols != '3cl' && $arrModule['col'] == 'right')
 					{
 						continue;
 					}
-					if ($arrModule['col'] == 'footer' && $objLayout->rows != '2rwf' && $objLayout->rows != '3rw')
+
+					if ($objLayout->rows != '2rwf' && $objLayout->rows != '3rw' && $arrModule['col'] == 'footer')
 					{
 						continue;
 					}
@@ -212,7 +205,7 @@ class PagePopup extends PageRegular
 		}
 
 		// Assign the title and description
-		$this->Template->title = \StringUtil::stripInsertTags($this->replaceInsertTags($objLayout->titleTag)); // see #7097
+		$this->Template->title = strip_tags($this->replaceInsertTags($objLayout->titleTag));
 		$this->Template->description = str_replace(array("\n", "\r", '"'), array(' ', '', ''), $objPage->description);
 
 		// Body onload and body classes
@@ -220,7 +213,7 @@ class PagePopup extends PageRegular
 		$this->Template->class = trim($objLayout->cssClass . ' ' . $objPage->cssClass);
 
 		// Execute AFTER the modules have been generated and create footer scripts first
-		$this->createFooterScripts($objLayout);
+		$this->createFooterScripts($objLayout, $objPage);
 		$this->createHeaderScripts($objPage, $objLayout);
 	}
 	
