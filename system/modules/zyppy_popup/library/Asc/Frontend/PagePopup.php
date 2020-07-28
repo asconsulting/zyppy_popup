@@ -13,6 +13,7 @@
 namespace Asc\Frontend;
 
 use Contao\PageRegular;
+use Contao\System;
 
 
 class PagePopup extends PageRegular
