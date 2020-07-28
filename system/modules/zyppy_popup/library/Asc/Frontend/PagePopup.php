@@ -13,6 +13,7 @@
 namespace Asc\Frontend;
 
 use Contao\PageRegular;
+use Contao\StringUtil;
 use Contao\System;
 
 
