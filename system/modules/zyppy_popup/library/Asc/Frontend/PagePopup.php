@@ -12,6 +12,8 @@
  
 namespace Asc\Frontend;
 
+use Contao\FrontendTemplate;
+use Contao\ModuleModel;
 use Contao\PageRegular;
 use Contao\StringUtil;
 use Contao\System;
@@ -150,7 +152,7 @@ class PagePopup extends PageRegular
 							}
 						}
 						
-						$objPopupWrapperTemplate = new \FrontendTemplate('fe_popup_wrapper');
+						$objPopupWrapperTemplate = new FrontendTemplate('fe_popup_wrapper');
 						$objPopupWrapperTemplate->popup = 1;
 						$objPopupWrapperTemplate->popupUuid = $arrModule['mod']->popupUuid;
 						$objPopupWrapperTemplate->popupDelay = $arrModule['mod']->popupDelay;
