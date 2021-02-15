@@ -1,18 +1,19 @@
 <?php
- 
+
 /**
  * Zyppy Popup
  *
  * Copyright (C) 2018 Andrew Stevens Consulting
  *
- * @package    asconsulting/zyppy_popup
- * @link       https://andrewstevens.consulting
+ * @package	   asconsulting/zyppy_popup
+ * @link	   https://andrewstevens.consulting
  */
 
- 
+
 namespace Asc\Widget;
 
 use Contao\ModuleWizard;
+use Contao\StringUtil;
 
 
 
@@ -26,7 +27,7 @@ class PopupModuleWizard extends ModuleWizard
 	 */
 	public function generate()
 	{
-		$this->import('Database');
+		$this->import(Database::class, 'Database');
 
 		$arrButtons = array('edit', 'copy', 'delete', 'enable', 'drag');
 
@@ -47,7 +48,11 @@ class PopupModuleWizard extends ModuleWizard
 		// Add the module type (see #3835)
 		foreach ($modules as $k=>$v)
 		{
-			$v['type'] = $GLOBALS['TL_LANG']['FMD'][$v['type']][0];
+			if (isset($GLOBALS['TL_LANG']['FMD'][$v['type']][0]))
+			{
+				$v['type'] = $GLOBALS['TL_LANG']['FMD'][$v['type']][0];
+			}
+
 			$modules[$k] = $v;
 		}
 
@@ -55,13 +60,36 @@ class PopupModuleWizard extends ModuleWizard
 								 ->limit(1)
 								 ->execute($this->currentRecord);
 
-		// Show all columns and filter in PageRegular (see #3273)
-		$cols = array('header', 'left', 'right', 'main', 'footer', 'popup');
+		$cols = array('main');
+
+		if (\in_array($objRow->rows, array('2rwh', '3rw')))
+		{
+			$cols[] = 'header';
+		}
+
+		if (\in_array($objRow->cols, array('2cll', '3cl')))
+		{
+			$cols[] = 'left';
+		}
+
+		if (\in_array($objRow->cols, array('2clr', '3cl')))
+		{
+			$cols[] = 'right';
+		}
+
+		if (\in_array($objRow->rows, array('2rwf', '3rw')))
+		{
+			$cols[] = 'footer';
+		}
+		
+		$cols[] = 'popup';
+
+		$positions = array();
 
 		// Add custom layout sections
-		if ($objRow->sections != '')
+		if ($objRow->sections)
 		{
-			$arrSections = \StringUtil::deserialize($objRow->sections);
+			$arrSections = StringUtil::deserialize($objRow->sections);
 
 			if (!empty($arrSections) && \is_array($arrSections))
 			{
@@ -69,18 +97,19 @@ class PopupModuleWizard extends ModuleWizard
 				{
 					if (!empty($v['id']))
 					{
-						$cols[$v['id']] = $v['id'];
+						$cols[] = $v['id'];
+						$positions[$v['id']] = $v['position'];
 					}
 				}
 			}
 		}
 
-		$cols = \Backend::convertLayoutSectionIdsToAssociativeArray($cols);
+		$cols = Backend::convertLayoutSectionIdsToAssociativeArray($cols);
 
 		// Get the new value
-		if (\Input::post('FORM_SUBMIT') == $this->strTable)
+		if (Input::post('FORM_SUBMIT') == $this->strTable)
 		{
-			$this->varValue = \Input::post($this->strId);
+			$this->varValue = Input::post($this->strId);
 		}
 
 		// Make sure there is at least an empty array
@@ -90,34 +119,38 @@ class PopupModuleWizard extends ModuleWizard
 		}
 		else
 		{
-			$arrCols = array();
-
 			// Initialize the sorting order
-			foreach ($cols as $col)
-			{
-				$arrCols[$col] = array();
-			}
+			$arrCols = array
+			(
+				'top' => array(),
+				'header' => array(),
+				'before' => array(),
+				'left' => array(),
+				'right' => array(),
+				'main' => array(),
+				'after' => array(),
+				'footer' => array(),
+				'bottom' => array(),
+				'popup' => array(),
+				'manual' => array()
+			);
 
 			foreach ($this->varValue as $v)
-			{
-				$arrCols[$v['col']][] = $v;
+				$key = $positions[$v['col']] ?? $v['col'];
+
+				$arrCols[$key][] = $v;
 			}
 
-			$this->varValue = array();
-
-			foreach ($arrCols as $arrCol)
-			{
-				$this->varValue = array_merge($this->varValue, $arrCol);
-			}
+			$this->varValue = array_merge(...array_values($arrCols));
 		}
 
 		// Add the label and the return wizard
-		$return = '<table id="ctrl_'.$this->strId.'" class="tl_modulewizard">
+		$return = '<table id="ctrl_' . $this->strId . '" class="tl_modulewizard">
   <thead>
   <tr>
-    <th>'.$GLOBALS['TL_LANG']['MSC']['mw_module'].'</th>
-    <th>'.$GLOBALS['TL_LANG']['MSC']['mw_column'].'</th>
-    <th></th>
+	<th>' . $GLOBALS['TL_LANG']['MSC']['mw_module'] . '</th>
+	<th>' . $GLOBALS['TL_LANG']['MSC']['mw_column'] . '</th>
+	<th></th>
   </tr>
   </thead>
   <tbody class="sortable">';
@@ -130,43 +163,43 @@ class PopupModuleWizard extends ModuleWizard
 			// Add modules
 			foreach ($modules as $v)
 			{
-				$options .= '<option value="'.\StringUtil::specialchars($v['id']).'"'.static::optionSelected($v['id'], $this->varValue[$i]['mod']).'>'.$v['name'].' ['. $v['type'] .']</option>';
+				$options .= '<option value="' . StringUtil::specialchars($v['id']) . '"' . static::optionSelected($v['id'], $this->varValue[$i]['mod']) . '>' . $v['name'] . ' [' . $v['type'] . ']</option>';
 			}
 
 			$return .= '
   <tr>
-    <td><select name="'.$this->strId.'['.$i.'][mod]" class="tl_select tl_chosen" onfocus="Backend.getScrollOffset()" onchange="Backend.updateModuleLink(this)">'.$options.'</select></td>';
+	<td><select name="' . $this->strId . '[' . $i . '][mod]" class="tl_select tl_chosen" onfocus="Backend.getScrollOffset()" onchange="Backend.updateModuleLink(this)">' . $options . '</select></td>';
 
-			$options = '';
+			$options = '<option value="">-</option>';
 
 			// Add columns
 			foreach ($cols as $k=>$v)
 			{
-				$options .= '<option value="'.\StringUtil::specialchars($k).'"'.static::optionSelected($k, $this->varValue[$i]['col']).'>'.$v.'</option>';
+				$options .= '<option value="' . StringUtil::specialchars($k) . '"' . static::optionSelected($k, $this->varValue[$i]['col']) . '>' . $v . '</option>';
 			}
 
 			$return .= '
-    <td><select name="'.$this->strId.'['.$i.'][col]" class="tl_select_column" onfocus="Backend.getScrollOffset()">'.$options.'</select></td>
-    <td>';
+	<td><select name="' . $this->strId . '[' . $i . '][col]" class="tl_select_column" onfocus="Backend.getScrollOffset()">' . $options . '</select></td>
+	<td>';
 
 			// Add buttons
 			foreach ($arrButtons as $button)
 			{
 				if ($button == 'edit')
 				{
-					$return .= ' <a href="contao/main.php?do=themes&amp;table=tl_module&amp;act=edit&amp;id=' . $this->varValue[$i]['mod'] . '&amp;popup=1&amp;nb=1&amp;rt=' . REQUEST_TOKEN . '" title="' . \StringUtil::specialchars($GLOBALS['TL_LANG']['tl_layout']['edit_module']) . '" class="module_link" ' . (($this->varValue[$i]['mod'] > 0) ? '' : ' style="display:none"') . ' onclick="Backend.openModalIframe({\'title\':\'' . \StringUtil::specialchars(str_replace("'", "\\'", $GLOBALS['TL_LANG']['tl_layout']['edit_module'])) . '\',\'url\':this.href});return false">'.\Image::getHtml('edit.svg').'</a>' . \Image::getHtml('edit_.svg', '', 'class="module_image"' . (($this->varValue[$i]['mod'] > 0) ? ' style="display:none"' : ''));
+					$return .= ' <a href="contao/main.php?do=themes&amp;table=tl_module&amp;act=edit&amp;id=' . $this->varValue[$i]['mod'] . '&amp;popup=1&amp;nb=1&amp;rt=' . REQUEST_TOKEN . '" title="' . StringUtil::specialchars($GLOBALS['TL_LANG']['tl_layout']['edit_module']) . '" class="module_link" ' . (($this->varValue[$i]['mod'] > 0) ? '' : ' style="display:none"') . ' onclick="Backend.openModalIframe({\'title\':\'' . StringUtil::specialchars(str_replace("'", "\\'", $GLOBALS['TL_LANG']['tl_layout']['edit_module'])) . '\',\'url\':this.href});return false">' . Image::getHtml('edit.svg') . '</a>' . Image::getHtml('edit_.svg', '', 'class="module_image"' . (($this->varValue[$i]['mod'] > 0) ? ' style="display:none"' : ''));
 				}
 				elseif ($button == 'drag')
 				{
-					$return .= ' <button type="button" class="drag-handle" title="' . \StringUtil::specialchars($GLOBALS['TL_LANG']['MSC']['move']) . '" aria-hidden="true">' . \Image::getHtml('drag.svg') . '</button>';
+					$return .= ' <button type="button" class="drag-handle" title="' . StringUtil::specialchars($GLOBALS['TL_LANG']['MSC']['move']) . '" aria-hidden="true">' . Image::getHtml('drag.svg') . '</button>';
 				}
 				elseif ($button == 'enable')
 				{
-					$return .= ' <button type="button" data-command="enable" class="mw_enable" title="' . \StringUtil::specialchars($GLOBALS['TL_LANG']['MSC']['mw_enable']) . '">' . \Image::getHtml((($this->varValue[$i]['enable']) ? 'visible.svg' : 'invisible.svg')) . '</button><input name="'.$this->strId.'['.$i.'][enable]" type="checkbox" class="tl_checkbox mw_enable" value="1" onfocus="Backend.getScrollOffset()"'. (($this->varValue[$i]['enable']) ? ' checked' : '').'>';
+					$return .= ' <button type="button" data-command="enable" class="mw_enable" title="' . StringUtil::specialchars($GLOBALS['TL_LANG']['MSC']['mw_enable']) . '">' . Image::getHtml((($this->varValue[$i]['enable']) ? 'visible.svg' : 'invisible.svg')) . '</button><input name="' . $this->strId . '[' . $i . '][enable]" type="checkbox" class="tl_checkbox mw_enable" value="1" onfocus="Backend.getScrollOffset()"' . (($this->varValue[$i]['enable']) ? ' checked' : '') . '>';
 				}
 				else
 				{
-					$return .= ' <button type="button" data-command="' . $button . '" title="' . \StringUtil::specialchars($GLOBALS['TL_LANG']['MSC']['mw_'.$button]) . '">' . \Image::getHtml($button.'.svg') . '</button>';
+					$return .= ' <button type="button" data-command="' . $button . '" title="' . StringUtil::specialchars($GLOBALS['TL_LANG']['MSC']['mw_' . $button]) . '">' . Image::getHtml($button . '.svg') . '</button>';
 				}
 			}
 
@@ -174,9 +207,11 @@ class PopupModuleWizard extends ModuleWizard
   </tr>';
 		}
 
-		return $return.'
+		return $return . '
   </tbody>
   </table>
-  <script>Backend.moduleWizard("ctrl_'.$this->strId.'")</script>';
+  <script>Backend.moduleWizard("ctrl_' . $this->strId . '")</script>';
 	}
 }
+
+class_alias(ModuleWizard::class, 'ModuleWizard');
