@@ -12,6 +12,10 @@
 
 namespace Asc\Widget;
 
+use Contao\Backend;
+use Contao\Database;
+use Contao\Image;
+use Contao\Input;
 use Contao\ModuleWizard;
 use Contao\StringUtil;
 
