@@ -140,6 +140,7 @@ class PopupModuleWizard extends ModuleWizard
 			);
 
 			foreach ($this->varValue as $v)
+			{
 				$key = $positions[$v['col']] ?? $v['col'];
 
 				$arrCols[$key][] = $v;
