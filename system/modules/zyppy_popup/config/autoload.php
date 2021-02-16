@@ -17,7 +17,7 @@ ClassLoader::addClasses(array
 (
 	'Asc\Backend\ZyppyPopup' 			=> 'system/modules/zyppy_popup/library/Asc/Backend/ZyppyPopup.php',
 	'Asc\Frontend\PagePopup' 			=> 'system/modules/zyppy_popup/library/Asc/Frontend/PagePopup.php',
-	'Asc\Widget\ModuleWizard' 			=> 'system/modules/zyppy_popup/library/Asc/Widget/ModuleWizard.php',
+	'Asc\Widget\PopupModuleWizard' 		=> 'system/modules/zyppy_popup/library/Asc/Widget/PopupModuleWizard.php',
 ));
 
 
