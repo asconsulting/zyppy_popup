@@ -22,7 +22,7 @@
     "autoload": {
         "psr-4": {
             "Asc\\": [
-                "system/modules/zyppy_popup/library"
+                "system/modules/zyppy_popup/library/Asc"
             ]
         }
     },
