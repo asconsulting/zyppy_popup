@@ -3,18 +3,19 @@
 /**
  * Zyppy Popup
  *
- * Copyright (C) 2018 Andrew Stevens Consulting
+ * Copyright (C) 2018-2022 Andrew Stevens Consulting
  *
  * @package    asconsulting/zyppy_popup
  * @link       https://andrewstevens.consulting
  */
+
  
  
 /**
  * Config
  */
-$GLOBALS['TL_DCA']['tl_article']['config']['onload_callback'][] = array('Asc\Backend\ZyppyPopup', 'loadArticle');
-$GLOBALS['TL_DCA']['tl_article']['config']['onsubmit_callback'][] = array('Asc\Backend\ZyppyPopup', 'saveArticle');
+$GLOBALS['TL_DCA']['tl_article']['config']['onload_callback'][] = array('ZyppyPopup\Backend\ZyppyPopup', 'loadArticle');
+$GLOBALS['TL_DCA']['tl_article']['config']['onsubmit_callback'][] = array('ZyppyPopup\Backend\ZyppyPopup', 'saveArticle');
 
 /**
  * Palettes
@@ -30,9 +31,9 @@ $GLOBALS['TL_DCA']['tl_article']['subpalettes']['popupAccept'] 	= 'popupRejectUr
 /**
  * Fields
  */
-$GLOBALS['TL_DCA']['tl_article']['fields']['inColumn']['options_callback'] 	= array('Asc\Backend\ZyppyPopup', 'getActiveLayoutSections');
-$GLOBALS['TL_DCA']['tl_article']['fields']['inColumn']['load_callback'][] 	= array('Asc\Backend\ZyppyPopup', 'loadLayoutSections');
-$GLOBALS['TL_DCA']['tl_article']['fields']['inColumn']['save_callback'][]	= array('Asc\Backend\ZyppyPopup', 'saveLayoutSections');
+$GLOBALS['TL_DCA']['tl_article']['fields']['inColumn']['options_callback'] 	= array('ZyppyPopup\Backend\ZyppyPopup', 'getActiveLayoutSections');
+$GLOBALS['TL_DCA']['tl_article']['fields']['inColumn']['load_callback'][] 	= array('ZyppyPopup\Backend\ZyppyPopup', 'loadLayoutSections');
+$GLOBALS['TL_DCA']['tl_article']['fields']['inColumn']['save_callback'][]	= array('ZyppyPopup\Backend\ZyppyPopup', 'saveLayoutSections');
 
 
 $GLOBALS['TL_DCA']['tl_article']['fields']['popup'] = array(
@@ -49,7 +50,7 @@ $GLOBALS['TL_DCA']['tl_article']['fields']['popupUuid'] = array
 	'eval'                    => array('rgxp'=>'alias', 'doNotCopy'=>true, 'maxlength'=>128, 'tl_class'=>'w50'),
 	'save_callback' => array
 	(
-		array('Asc\Backend\ZyppyPopup', 'generateArticleUuid')
+		array('ZyppyPopup\Backend\ZyppyPopup', 'generateArticleUuid')
 	),
 	'sql'                     => "varchar(128) COLLATE utf8_bin NOT NULL default ''"
 );

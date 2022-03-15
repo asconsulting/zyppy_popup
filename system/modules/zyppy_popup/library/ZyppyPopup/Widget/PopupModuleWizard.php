@@ -1,16 +1,17 @@
 <?php
-
+ 
 /**
  * Zyppy Popup
  *
- * Copyright (C) 2018 Andrew Stevens Consulting
+ * Copyright (C) 2018-2022 Andrew Stevens Consulting
  *
- * @package	   asconsulting/zyppy_popup
- * @link	   https://andrewstevens.consulting
+ * @package    asconsulting/zyppy_popup
+ * @link       https://andrewstevens.consulting
  */
 
-
-namespace Asc\Widget;
+ 
+ 
+namespace ZyppyPopup\Widget;
 
 use Contao\Backend;
 use Contao\Database;
