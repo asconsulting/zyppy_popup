@@ -49,7 +49,7 @@ class ZyppyPopup extends \Backend
 		$arrSections = StringUtil::deserialize($varValue);
 		$boolInject = true;
 		foreach($arrSections as $intIndex => $arrSection) {
-			if ($arrSection['id'] == 'popup') [
+			if ($arrSection['id'] == 'popup') {
 				$boolInject = false;
 				if ($arrSection['title'] != 'Pop-up') {
 					$arrSections[$intIndex]['title'] = 'Pop-up';
