@@ -44,7 +44,7 @@ class Layout extends Contao_Backend
 		}
 	}
 
-	public function injectSections($varValue, DataContainer $dc)
+	public function injectPopupSection($varValue, DataContainer $dc)
 	{
 		$arrSections = StringUtil::deserialize($varValue);
 		$boolInject = true;
