@@ -31,8 +31,8 @@ class Page extends Contao_Frontend
 		$objLayout = $this->getPageLayout($objPageModel);
 		
 		// Initialize modules and sections
-		$arrCustomSections = array();
-		$arrSections = array('header', 'left', 'right', 'main', 'footer');
+		$arrCustomSections = $objPage->Template->sections;
+		$arrCustomSections['popup'] = ''; // Unset the Popup section because we are going to regenerate it with the propper wrappers.
 		$arrModules = StringUtil::deserialize($objLayout->modules);
 
 		$arrModuleIds = array();
@@ -75,33 +75,8 @@ class Page extends Contao_Frontend
 					$arrModule['mod'] = $arrMapper[$arrModule['mod']];
 				}
 
-				// Generate the modules
-				if (\in_array($arrModule['col'], $arrSections))
-				{
-					// Filter active sections (see #3273)
-					if ($objLayout->rows != '2rwh' && $objLayout->rows != '3rw' && $arrModule['col'] == 'header')
-					{
-						continue;
-					}
-
-					if ($objLayout->cols != '2cll' && $objLayout->cols != '3cl' && $arrModule['col'] == 'left')
-					{
-						continue;
-					}
-
-					if ($objLayout->cols != '2clr' && $objLayout->cols != '3cl' && $arrModule['col'] == 'right')
-					{
-						continue;
-					}
-
-					if ($objLayout->rows != '2rwf' && $objLayout->rows != '3rw' && $arrModule['col'] == 'footer')
-					{
-						continue;
-					}
-
-					$objPage->Template->{$arrModule['col']} .= $objPage->getFrontendModule($arrModule['mod'], $arrModule['col']);
-				}
-				else
+				// Filter active sections (see #3273)
+				if ($arrModule['col'] == 'popup')
 				{
 					if ($arrModule['mod']->popup) {
 						if ($arrModule['mod']->popupAccept) {
@@ -126,12 +101,12 @@ class Page extends Contao_Frontend
 						$objPopupWrapperTemplate->popupRejectUrl = $arrModule['mod']->popupRejectUrl;
 						$objPopupWrapperTemplate->body = $objPage->getFrontendModule($arrModule['mod'], $arrModule['col']);
 						
-						$arrCustomSections[$arrModule['col']] .= $objPopupWrapperTemplate->parse();
-						$arrCustomSections['main'] .= $objPopupWrapperTemplate->parse();
+						$arrCustomSections['popup'] .= $objPopupWrapperTemplate->parse();
 					} else {
-						$arrCustomSections[$arrModule['col']] .= $objPage->getFrontendModule($arrModule['mod'], $arrModule['col']);
+						$arrCustomSections['popup'] .= $objPage->getFrontendModule($arrModule['mod'], $arrModule['col']);
 					}
 				}
+
 			}
 		}
 

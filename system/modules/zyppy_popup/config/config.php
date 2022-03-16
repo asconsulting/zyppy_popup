@@ -14,7 +14,7 @@
 /**
  * Hooks
  */
-//$GLOBALS['TL_HOOKS']['generatePage'][] 		= array('ZyppyPopup\Frontend\Page', 'generatePage');
+$GLOBALS['TL_HOOKS']['generatePage'][] 		= array('ZyppyPopup\Frontend\Page', 'generatePage');
 	
 	
 /**
