@@ -57,10 +57,12 @@ class Layout extends Contao_Backend
 			}
 		}
 		if ($boolInject) {
-			$arrSections[] = array('title'=>'Pop-up', 'id'=>'popup','template'=>'block_section','position'=>'top');
+			if (count($arrSections) == 1 && $arrSections[0]['id'] == '') {
+				$arrSections[0] = array('title'=>'Pop-up', 'id'=>'popup','template'=>'block_section','position'=>'top');
+			} else {
+				$arrSections[] = array('title'=>'Pop-up', 'id'=>'popup','template'=>'block_section','position'=>'top');
+			}
 		}
-		var_dump($arrSections);
-		echo "<hr>";
 		return serialize($arrSections);
 	}
 
