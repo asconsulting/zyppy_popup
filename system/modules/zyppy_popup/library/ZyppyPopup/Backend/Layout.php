@@ -59,6 +59,8 @@ class Layout extends Contao_Backend
 		if ($boolInject) {
 			$arrSections[] = array('title'=>'Pop-up', 'id'=>'popup','template'=>'block_section','position'=>'top');
 		}
+		var_dump($arrSections);
+		echo "<hr>";
 		return serialize($arrSections);
 	}
 
