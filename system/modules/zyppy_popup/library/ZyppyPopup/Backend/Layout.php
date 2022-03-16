@@ -36,11 +36,11 @@ class Layout extends Contao_Backend
 				}
 			}
 			if ($boolInject) {
-				$arrSections[] = array('title'=>'Pop-up', 'id'=>'popup','template'=>'block_section','position'=>'top');
+				$arrSections[] = array('title'=>'Pop-up', 'id'=>'popup','template'=>'block_section','position'=>'bottom');
 			}
 			$dc->activeRecord->sections = serialize($arrSections);
 		} else {
-			$dc->activeRecord->sections = 'a:1:{i:0;a:4:{s:5:"title";s:6:"Pop-up";s:2:"id";s:5:"popup";s:8:"template";s:13:"block_section";s:8:"position";s:3:"top";}}';
+			$dc->activeRecord->sections = 'a:1:{i:0;a:4:{s:5:"title";s:6:"Pop-up";s:2:"id";s:5:"popup";s:8:"template";s:13:"block_section";s:8:"position";s:6:"bottom";}}';
 		}
 	}
 
@@ -58,9 +58,9 @@ class Layout extends Contao_Backend
 		}
 		if ($boolInject) {
 			if (count($arrSections) == 1 && $arrSections[0]['id'] == '') {
-				$arrSections[0] = array('title'=>'Pop-up', 'id'=>'popup','template'=>'block_section','position'=>'top');
+				$arrSections[0] = array('title'=>'Pop-up', 'id'=>'popup','template'=>'block_section','position'=>'bottom');
 			} else {
-				$arrSections[] = array('title'=>'Pop-up', 'id'=>'popup','template'=>'block_section','position'=>'top');
+				$arrSections[] = array('title'=>'Pop-up', 'id'=>'popup','template'=>'block_section','position'=>'bottom');
 			}
 		}
 		return serialize($arrSections);

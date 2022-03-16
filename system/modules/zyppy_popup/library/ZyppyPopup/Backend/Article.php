@@ -1,5 +1,5 @@
 <?php
-
+ 
 /**
  * Zyppy Popup
  *
@@ -9,8 +9,8 @@
  * @link       https://andrewstevens.consulting
  */
 
-
-
+ 
+ 
 namespace ZyppyPopup\Backend;
 
 use Contao\Backend as Contao_Backend;
@@ -19,8 +19,9 @@ use Contao\LayoutModel;
 use Contao\PageModel;
 
 
-class ZyppyPopup extends Contao_Backend
+class Article extends Contao_Backend
 {
+	
 	
 	public function loadArticle(DataContainer $dc) 
 	{
@@ -33,6 +34,7 @@ class ZyppyPopup extends Contao_Backend
 		}
 	}
 
+
 	public function saveArticle(DataContainer $dc) 
 	{
 		if ($dc->activeRecord->popup == 1) {
@@ -43,6 +45,7 @@ class ZyppyPopup extends Contao_Backend
 			}
 		}
 	}
+	
 	
 	public function loadLayoutSections($varValue, DataContainer $dc) 
 	{
@@ -57,6 +60,7 @@ class ZyppyPopup extends Contao_Backend
 		}
 	}
 	
+	
 	public function saveLayoutSections($varValue, DataContainer $dc) {
 		if ($dc->activeRecord->popup == 1)
 		{
@@ -68,6 +72,7 @@ class ZyppyPopup extends Contao_Backend
 			return $varValue;
 		}
 	}
+	
 	
 	public function generateArticleUuid($varValue, DataContainer $dc)
 	{
@@ -93,29 +98,6 @@ class ZyppyPopup extends Contao_Backend
 		}
 	}
 	
-	public function generateModuleUuid($varValue, DataContainer $dc)
-	{
-		if ($dc->activeRecord->popup) {
-			$autoUuid = false;
-	
-			// Generate an alias if there is none
-			if ($varValue == '')
-			{
-				$autoUuid = true;
-				$varValue = uniqid('p');
-			}
-	
-			$objUuid = $this->Database->prepare("SELECT id FROM tl_module WHERE popupUuid=?")
-									   ->execute($dc->id, $varValue);
-	
-			if ($objUuid->numRows > 1)
-			{
-				$varValue .= '-' . $dc->id;
-			}
-	
-			return $varValue;
-		}
-	}
 	
 	/**
 	 * Return all active layout sections as array
@@ -190,39 +172,7 @@ class ZyppyPopup extends Contao_Backend
 			}
 		}
 
-		return ContaoBackend::convertLayoutSectionIdsToAssociativeArray($arrSections);
+		return Contao_Backend::convertLayoutSectionIdsToAssociativeArray($arrSections);
 	}
-	
-	/**
-	 * Return all layout sections as array
-	 *
-	 * @return array
-	 */
-	public function getLayoutSections()
-	{
-		$arrSections = array('header', 'left', 'right', 'main', 'footer', 'popup');
 
-		// Check for custom layout sections
-		$objLayout = $this->Database->query("SELECT sections FROM tl_layout WHERE sections!=''");
-
-		while ($objLayout->next())
-		{
-			$arrCustom = \StringUtil::deserialize($objLayout->sections);
-
-			// Add the custom layout sections
-			if (!empty($arrCustom) && \is_array($arrCustom))
-			{
-				foreach ($arrCustom as $v)
-				{
-					if (!empty($v['id']))
-					{
-						$arrSections[] = $v['id'];
-					}
-				}
-			}
-		}
-
-		return ContaoBackend::convertLayoutSectionIdsToAssociativeArray($arrSections);
-	}
-	
 }

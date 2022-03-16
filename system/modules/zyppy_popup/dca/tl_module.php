@@ -30,7 +30,7 @@ $GLOBALS['TL_DCA']['tl_module']['subpalettes']['popupAccept'] 	= 'popupRejectUrl
 /**
  * Fields
  */
-$GLOBALS['TL_DCA']['tl_module']['fields']['inColumn']['options_callback'] = array('ZyppyPopup\Backend\ZyppyPopup', 'getActiveLayoutSections');
+$GLOBALS['TL_DCA']['tl_module']['fields']['inColumn']['options_callback'] = array('ZyppyPopup\Backend\Module', 'getActiveLayoutSections');
 
 $GLOBALS['TL_DCA']['tl_module']['fields']['popup'] = array(
 	'filter'				  => true,
@@ -49,7 +49,7 @@ $GLOBALS['TL_DCA']['tl_module']['fields']['popupUuid'] = array
 	'eval'                    => array('rgxp'=>'alias', 'doNotCopy'=>true, 'maxlength'=>128, 'tl_class'=>'w50'),
 	'save_callback' => array
 	(
-		array('ZyppyPopup\Backend\ZyppyPopup', 'generateArticleUuid')
+		array('ZyppyPopup\Backend\Module', 'generateModuleUuid')
 	),
 	'sql'                     => "varchar(128) COLLATE utf8_bin NOT NULL default ''"
 );

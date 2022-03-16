@@ -14,8 +14,9 @@
 /**
  * Config
  */
-$GLOBALS['TL_DCA']['tl_article']['config']['onload_callback'][] = array('ZyppyPopup\Backend\ZyppyPopup', 'loadArticle');
-$GLOBALS['TL_DCA']['tl_article']['config']['onsubmit_callback'][] = array('ZyppyPopup\Backend\ZyppyPopup', 'saveArticle');
+$GLOBALS['TL_DCA']['tl_article']['config']['onload_callback'][] = array('ZyppyPopup\Backend\Article', 'loadArticle');
+$GLOBALS['TL_DCA']['tl_article']['config']['onsubmit_callback'][] = array('ZyppyPopup\Backend\Article', 'saveArticle');
+
 
 /**
  * Palettes
@@ -31,9 +32,9 @@ $GLOBALS['TL_DCA']['tl_article']['subpalettes']['popupAccept'] 	= 'popupRejectUr
 /**
  * Fields
  */
-$GLOBALS['TL_DCA']['tl_article']['fields']['inColumn']['options_callback'] 	= array('ZyppyPopup\Backend\ZyppyPopup', 'getActiveLayoutSections');
-$GLOBALS['TL_DCA']['tl_article']['fields']['inColumn']['load_callback'][] 	= array('ZyppyPopup\Backend\ZyppyPopup', 'loadLayoutSections');
-$GLOBALS['TL_DCA']['tl_article']['fields']['inColumn']['save_callback'][]	= array('ZyppyPopup\Backend\ZyppyPopup', 'saveLayoutSections');
+$GLOBALS['TL_DCA']['tl_article']['fields']['inColumn']['options_callback'] 	= array('ZyppyPopup\Backend\Article', 'getActiveLayoutSections');
+$GLOBALS['TL_DCA']['tl_article']['fields']['inColumn']['load_callback'][] 	= array('ZyppyPopup\Backend\Article', 'loadLayoutSections');
+$GLOBALS['TL_DCA']['tl_article']['fields']['inColumn']['save_callback'][]	= array('ZyppyPopup\Backend\Article', 'saveLayoutSections');
 
 
 $GLOBALS['TL_DCA']['tl_article']['fields']['popup'] = array(
@@ -50,7 +51,7 @@ $GLOBALS['TL_DCA']['tl_article']['fields']['popupUuid'] = array
 	'eval'                    => array('rgxp'=>'alias', 'doNotCopy'=>true, 'maxlength'=>128, 'tl_class'=>'w50'),
 	'save_callback' => array
 	(
-		array('ZyppyPopup\Backend\ZyppyPopup', 'generateArticleUuid')
+		array('ZyppyPopup\Backend\Article', 'generateArticleUuid')
 	),
 	'sql'                     => "varchar(128) COLLATE utf8_bin NOT NULL default ''"
 );
