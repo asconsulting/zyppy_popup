@@ -14,8 +14,8 @@
 /**
  * Config
  */
-$GLOBALS['TL_DCA']['tl_article']['config']['onload_callback'][] = array('ZyppyPopup\Backend\Article', 'loadArticle');
-$GLOBALS['TL_DCA']['tl_article']['config']['onsubmit_callback'][] = array('ZyppyPopup\Backend\Article', 'saveArticle');
+//$GLOBALS['TL_DCA']['tl_article']['config']['onload_callback'][] = array('ZyppyPopup\Backend\Article', 'loadArticle');
+//$GLOBALS['TL_DCA']['tl_article']['config']['onsubmit_callback'][] = array('ZyppyPopup\Backend\Article', 'saveArticle');
 
 
 /**
@@ -33,8 +33,8 @@ $GLOBALS['TL_DCA']['tl_article']['subpalettes']['popupAccept'] 	= 'popupRejectUr
  * Fields
  */
 $GLOBALS['TL_DCA']['tl_article']['fields']['inColumn']['options_callback'] 	= array('ZyppyPopup\Backend\Article', 'getActiveLayoutSections');
-$GLOBALS['TL_DCA']['tl_article']['fields']['inColumn']['load_callback'][] 	= array('ZyppyPopup\Backend\Article', 'loadLayoutSections');
-$GLOBALS['TL_DCA']['tl_article']['fields']['inColumn']['save_callback'][]	= array('ZyppyPopup\Backend\Article', 'saveLayoutSections');
+//$GLOBALS['TL_DCA']['tl_article']['fields']['inColumn']['load_callback'][] 	= array('ZyppyPopup\Backend\Article', 'loadLayoutSections');
+//$GLOBALS['TL_DCA']['tl_article']['fields']['inColumn']['save_callback'][]	= array('ZyppyPopup\Backend\Article', 'saveLayoutSections');
 
 
 $GLOBALS['TL_DCA']['tl_article']['fields']['popup'] = array(
