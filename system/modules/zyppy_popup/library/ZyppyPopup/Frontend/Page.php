@@ -27,7 +27,7 @@ class Page extends Contao_Frontend
 	public function generatePage(&$objPageModel, $objLayout, &$objPage)
 	{
 		
-		$objLayout = $objPage->getPageLayout($objPageModel);
+		$objLayout = $this->getPageLayout($objPageModel);
 		
 		// Initialize modules and sections
 		$arrCustomSections = array();
@@ -135,6 +135,42 @@ class Page extends Contao_Frontend
 		}
 
 		$objPage->Template->sections = $arrCustomSections;
+	}
+	
+	
+	/**
+	 * Get a page layout and return it as database result object
+	 *
+	 * @param PageModel $objPage
+	 *
+	 * @return LayoutModel
+	 */
+	protected function getPageLayout($objPage)
+	{
+		$objLayout = LayoutModel::findByPk($objPage->layout);
+
+		// Die if there is no layout
+		if (null === $objLayout)
+		{
+			$this->log('Could not find layout ID "' . $objPage->layout . '"', __METHOD__, ContaoContext::ERROR);
+
+			throw new NoLayoutSpecifiedException('No layout specified');
+		}
+
+		$objPage->hasJQuery = $objLayout->addJQuery;
+		$objPage->hasMooTools = $objLayout->addMooTools;
+
+		// HOOK: modify the page or layout object (see #4736)
+		if (isset($GLOBALS['TL_HOOKS']['getPageLayout']) && \is_array($GLOBALS['TL_HOOKS']['getPageLayout']))
+		{
+			foreach ($GLOBALS['TL_HOOKS']['getPageLayout'] as $callback)
+			{
+				$this->import($callback[0]);
+				$this->{$callback[0]}->{$callback[1]}($objPage, $objLayout, $this);
+			}
+		}
+
+		return $objLayout;
 	}
 	
 }
