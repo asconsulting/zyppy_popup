@@ -1,24 +1,25 @@
 <?php
- 
+
 /**
  * Zyppy Popup
  *
- * Copyright (C) 2018 Andrew Stevens Consulting
+ * Copyright (C) 2018-2022 Andrew Stevens Consulting
  *
  * @package    asconsulting/zyppy_popup
  * @link       https://andrewstevens.consulting
  */
 
- 
+
+
 namespace ZyppyPopup\Backend;
 
-use Contao\Backend as ContaoBackend;
+use Contao\Backend as Contao_Backend;
 use Contao\DataContainer;
 use Contao\LayoutModel;
 use Contao\PageModel;
 
 
-class ZyppyPopup extends \Backend
+class ZyppyPopup extends Contao_Backend
 {
 	
 	public function loadArticle(DataContainer $dc) 
