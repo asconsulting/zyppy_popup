@@ -1,5 +1,5 @@
 <?php
- 
+
 /**
  * Zyppy Popup
  *
@@ -9,20 +9,20 @@
  * @link       https://andrewstevens.consulting
  */
 
- 
- 
+
+
 namespace ZyppyPopup\Backend;
 
-use Contao\Backend as ContaoBackend;
+use Contao\Backend as Contao_Backend;
 use Contao\DataContainer;
 use Contao\LayoutModel;
 use Contao\PageModel;
 use Contao\StringUtil;
 
-class ZyppyPopup extends \Backend
+class Layout extends Contao_Backend
 {
-	
-	public function injectSectionDatacontainer(DataContainer $dc) 
+
+	public function injectSectionDatacontainer(DataContainer $dc)
 	{
 		if ($dc->activeRecord->sections) {
 			$arrSections = StringUtil::deserialize($dc->activeRecord->sections);
@@ -44,7 +44,7 @@ class ZyppyPopup extends \Backend
 		}
 	}
 
-	public function injectSections($varValue, DataContainer $dc) 
+	public function injectSections($varValue, DataContainer $dc)
 	{
 		$arrSections = StringUtil::deserialize($varValue);
 		$boolInject = true;
@@ -61,5 +61,5 @@ class ZyppyPopup extends \Backend
 		}
 		return serialize($arrSections);
 	}
-	
+
 }
