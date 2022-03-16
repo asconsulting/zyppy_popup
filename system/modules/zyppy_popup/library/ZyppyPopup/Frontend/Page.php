@@ -15,6 +15,7 @@ namespace ZyppyPopup\Frontend;
 
 use Contao\Frontend as Contao_Frontend;
 use Contao\FrontendTemplate;
+use Contao\LayoutModel;
 use Contao\ModuleModel;
 use Contao\PageRegular;
 use Contao\StringUtil;
