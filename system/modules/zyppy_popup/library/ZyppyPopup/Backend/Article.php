@@ -47,21 +47,8 @@ class Article extends Contao_Backend
 	}
 	
 	
-	public function loadLayoutSections($varValue, DataContainer $dc) 
+	public function checkSection($varValue, DataContainer $dc) 
 	{
-		if ($dc->activeRecord->popup == 1)
-		{
-			return 'popup';
-		} else {
-			if ($varValue == 'popup') {
-				return 'main';
-			}
-			return $varValue;
-		}
-	}
-	
-	
-	public function saveLayoutSections($varValue, DataContainer $dc) {
 		if ($dc->activeRecord->popup == 1)
 		{
 			return 'popup';
