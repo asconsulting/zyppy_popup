@@ -49,25 +49,6 @@ class Layout extends Contao_Backend
 				}
 			}
 		}
-		
-		if ($dc->activeRecord->sections) {
-			$arrSections = StringUtil::deserialize($dc->activeRecord->sections);
-			$boolInject = true;
-			foreach($arrSections as $intIndex => $arrSection) {
-				if ($arrSection['id'] == 'popup') {
-					$boolInject = false;
-					if ($arrSection['title'] != 'Pop-up') {
-						$arrSections[$intIndex]['title'] = 'Pop-up';
-					}
-				}
-			}
-			if ($boolInject) {
-				$arrSections[] = array('title'=>'Pop-up', 'id'=>'popup','template'=>'block_section','position'=>'bottom');
-			}
-			$dc->activeRecord->sections = serialize($arrSections);
-		} else {
-			$dc->activeRecord->sections = 'a:1:{i:0;a:4:{s:5:"title";s:6:"Pop-up";s:2:"id";s:5:"popup";s:8:"template";s:13:"block_section";s:8:"position";s:6:"bottom";}}';
-		}
 	}
 
 	public function injectPopupSection($varValue, DataContainer $dc)
