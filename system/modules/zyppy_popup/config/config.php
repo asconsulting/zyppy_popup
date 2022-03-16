@@ -3,20 +3,21 @@
 /**
  * Zyppy Popup
  *
- * Copyright (C) 2018 Andrew Stevens Consulting
+ * Copyright (C) 2018-2022 Andrew Stevens Consulting
  *
  * @package    asconsulting/zyppy_popup
  * @link       https://andrewstevens.consulting
  */
+
  
  
 /**
- * Pages
- */ 
-$GLOBALS['TL_PTY']['regular'] = 'Asc\Frontend\PagePopup';
+ * Hooks
+ */
+$GLOBALS['TL_HOOKS']['generatePage'][] 		= array('ZyppyPopup\Frontend\Page', 'generatePage');
 	
 	
 /**
  * Widgets
  */ 
-$GLOBALS['BE_FFL']['moduleWizard'] = 'Asc\Widget\PopupModuleWizard';
+//$GLOBALS['BE_FFL']['moduleWizard'] = 'ZyppyPopup\Widget\PopupModuleWizard';
