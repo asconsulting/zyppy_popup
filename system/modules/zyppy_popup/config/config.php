@@ -15,9 +15,3 @@
  * Hooks
  */
 $GLOBALS['TL_HOOKS']['generatePage'][] 		= array('ZyppyPopup\Frontend\Page', 'generatePage');
-	
-	
-/**
- * Widgets
- */ 
-//$GLOBALS['BE_FFL']['moduleWizard'] = 'ZyppyPopup\Widget\PopupModuleWizard';

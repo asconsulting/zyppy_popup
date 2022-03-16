@@ -51,7 +51,7 @@ $GLOBALS['TL_DCA']['tl_module']['fields']['popupUuid'] = array
 	(
 		array('ZyppyPopup\Backend\Module', 'generateModuleUuid')
 	),
-	'sql'                     => "varchar(128) COLLATE utf8_bin NOT NULL default ''"
+	'sql'                     => "varchar(255) BINARY NOT NULL default ''"
 );
 
 $GLOBALS['TL_DCA']['tl_module']['fields']['popupDelay'] = array

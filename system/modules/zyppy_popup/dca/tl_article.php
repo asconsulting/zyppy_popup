@@ -10,6 +10,9 @@
  */
 
  
+
+$GLOBALS['TL_DCA']['tl_article']['config']['onsubmit_callback'][] 	= array('ZyppyPopup\Backend\Article', 'checkSection');
+
  
 /**
  * Palettes
@@ -26,8 +29,6 @@ $GLOBALS['TL_DCA']['tl_article']['subpalettes']['popupAccept'] 	= 'popupRejectUr
  * Fields
  */
 $GLOBALS['TL_DCA']['tl_article']['fields']['inColumn']['options_callback'] 	= array('ZyppyPopup\Backend\Article', 'getActiveLayoutSections');
-$GLOBALS['TL_DCA']['tl_article']['fields']['inColumn']['load_callback'][] 	= array('ZyppyPopup\Backend\Article', 'checkSection');
-$GLOBALS['TL_DCA']['tl_article']['fields']['inColumn']['save_callback'][]	= array('ZyppyPopup\Backend\Article', 'checkSection');
 
 
 $GLOBALS['TL_DCA']['tl_article']['fields']['popup'] = array(

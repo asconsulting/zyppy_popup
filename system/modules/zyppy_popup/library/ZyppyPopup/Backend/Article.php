@@ -13,6 +13,7 @@
  
 namespace ZyppyPopup\Backend;
 
+use Contao\ArticleModel;
 use Contao\Backend as Contao_Backend;
 use Contao\DataContainer;
 use Contao\LayoutModel;
@@ -22,16 +23,17 @@ use Contao\PageModel;
 class Article extends Contao_Backend
 {
 	
-	public function checkSection($varValue, DataContainer $dc) 
+	public function checkSection(DataContainer $dc) 
 	{
-		if ($dc->activeRecord->popup == 1)
-		{
-			return 'popup';
-		} else {
-			if ($varValue == 'popup') {
-				return 'main';
-			}
-			return $varValue;
+		$objArticle = ArticleModel::findByPk($dc->id);
+		if ($objArticle) {
+			if ($objArticle->popup == '1' && $objArticle->inColumn != 'popup') {
+				$objArticle->inColumn = 'popup';
+				$objArticle->save();
+			} elseif ($objArticle->popup != '1' && $objArticle->inColumn == 'popup') {
+				$objArticle->inColumn = 'main';
+				$objArticle->save();
+			}	
 		}
 	}
 	
