@@ -14,6 +14,7 @@
 namespace ZyppyPopup\Backend;
 
 use Contao\Backend as Contao_Backend;
+use Contao\Database;
 use Contao\DataContainer;
 use Contao\LayoutModel;
 use Contao\PageModel;
@@ -24,6 +25,27 @@ class Layout extends Contao_Backend
 
 	public function injectSectionDatacontainer(DataContainer $dc)
 	{
+		
+		$objDatabase = Database::getInstance()->execute("SELECT id, sections FROM tl_layout WHERE sections NOT LIKE '?s:2:\"id\";s:5:\"popup\";?'");
+		if ($objDatabase) {
+			while ($objDatabase->next()) {
+				$arrSections = StringUtil::deserialize($objDatabase->sections);
+				$boolInject = true;
+				foreach($arrSections as $intIndex => $arrSection) {
+					if ($arrSection['id'] == 'popup') {
+						$boolInject = false;
+						if ($arrSection['title'] != 'Pop-up') {
+							$arrSections[$intIndex]['title'] = 'Pop-up';
+						}
+					}
+				}
+				if ($boolInject) {
+					$arrSections[] = array('title'=>'Pop-up', 'id'=>'popup','template'=>'block_section','position'=>'bottom');
+					Database::getInstance()->prepare('UPDATE tl_layout SET sections=? WHERE id=?')->execute(serialize($arrSections), $objDatabase->id);
+				}
+			}
+		}
+		
 		if ($dc->activeRecord->sections) {
 			$arrSections = StringUtil::deserialize($dc->activeRecord->sections);
 			$boolInject = true;
