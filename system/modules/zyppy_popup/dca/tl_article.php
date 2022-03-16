@@ -12,13 +12,6 @@
  
  
 /**
- * Config
- */
-//$GLOBALS['TL_DCA']['tl_article']['config']['onload_callback'][] = array('ZyppyPopup\Backend\Article', 'loadArticle');
-//$GLOBALS['TL_DCA']['tl_article']['config']['onsubmit_callback'][] = array('ZyppyPopup\Backend\Article', 'saveArticle');
-
-
-/**
  * Palettes
  */
 $GLOBALS['TL_DCA']['tl_article']['palettes']['default'] = str_replace(';{syndication_legend}', ';{popup_legend},popup;{syndication_legend}', $GLOBALS['TL_DCA']['tl_article']['palettes']['default']);
