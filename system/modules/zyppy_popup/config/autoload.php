@@ -18,7 +18,10 @@ ClassLoader::addClasses(array
 (
 	'ZyppyPopup\Backend\Layout' 				=> 'system/modules/zyppy_popup/library/ZyppyPopup/Backend/Layout.php',
 	'ZyppyPopup\Backend\ZyppyPopup' 			=> 'system/modules/zyppy_popup/library/ZyppyPopup/Backend/ZyppyPopup.php',
+	
+	'ZyppyPopup\Frontend\Page' 					=> 'system/modules/zyppy_popup/library/ZyppyPopup/Frontend/Page.php',
 	'ZyppyPopup\Frontend\PagePopup' 			=> 'system/modules/zyppy_popup/library/ZyppyPopup/Frontend/PagePopup.php',
+	
 	'ZyppyPopup\Widget\PopupModuleWizard' 		=> 'system/modules/zyppy_popup/library/ZyppyPopup/Widget/PopupModuleWizard.php',
 ));
 

@@ -12,9 +12,9 @@
  
  
 /**
- * Pages
- */ 
-//$GLOBALS['TL_PTY']['regular'] = 'ZyppyPopup\Frontend\PagePopup';
+ * Hooks
+ */
+$GLOBALS['TL_HOOKS']['generatePage'][] 		= array('ZyppyClass\Frontend\Page', 'generatePage');
 	
 	
 /**
