@@ -19,7 +19,7 @@ use Contao\LayoutModel;
 use Contao\PageModel;
 
 
-class ZyppyPopup extends Contao_Backend
+class Module extends Contao_Backend
 {
 	
 	public function generateModuleUuid($varValue, DataContainer $dc)
