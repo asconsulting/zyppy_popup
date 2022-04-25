@@ -16,6 +16,7 @@
  */
 
 $GLOBALS['TL_LANG']['tl_module']['popup'] 					= array("Popup", "Is this module a popup");
+$GLOBALS['TL_LANG']['tl_module']['popupClass'] 				= array("CSS Class", "CSS class to add to popup.");
 $GLOBALS['TL_LANG']['tl_module']['popupDelay'] 				= array("Delay", "Delay in milliseconds before popup is shown.");
 $GLOBALS['TL_LANG']['tl_module']['popupReshowDelay'] 		= array("Reshow Delay", "Delay in minutes before reshowing a popup.");
 $GLOBALS['TL_LANG']['tl_module']['popupScrollTrigger'] 		= array("Scroll Trigger", "Trigger popup after scrolling x pixels.");

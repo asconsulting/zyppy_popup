@@ -21,7 +21,7 @@ $GLOBALS['TL_DCA']['tl_article']['palettes']['default'] = str_replace(';{syndica
 $GLOBALS['TL_DCA']['tl_article']['palettes']['__selector__'][] = 'popup';
 $GLOBALS['TL_DCA']['tl_article']['palettes']['__selector__'][] = 'popupAccept';
 
-$GLOBALS['TL_DCA']['tl_article']['subpalettes']['popup'] 		= 'popupUuid,popupDelay,popupReshowDelay,popupScrollTrigger,popupFadeDuration,popupTrigger,popupAddClose,popupAccept';
+$GLOBALS['TL_DCA']['tl_article']['subpalettes']['popup'] 		= 'popupUuid,popupClass,popupDelay,popupReshowDelay,popupScrollTrigger,popupFadeDuration,popupTrigger,popupAddClose,popupAccept';
 $GLOBALS['TL_DCA']['tl_article']['subpalettes']['popupAccept'] 	= 'popupRejectUrl';
  
   
@@ -48,6 +48,14 @@ $GLOBALS['TL_DCA']['tl_article']['fields']['popupUuid'] = array
 		array('ZyppyPopup\Backend\Article', 'generateArticleUuid')
 	),
 	'sql'                     => "varchar(255) BINARY NOT NULL default ''"
+);
+
+$GLOBALS['TL_DCA']['tl_article']['fields']['popupClass'] = array
+(
+	'label'                   => &$GLOBALS['TL_LANG']['tl_article']['popupClass'],
+	'inputType'               => 'text',
+	'eval'                    => array('tl_class'=>'w50'),
+	'sql'                     => "varchar(255) NOT NULL default ''"
 );
 
 $GLOBALS['TL_DCA']['tl_article']['fields']['popupDelay'] = array

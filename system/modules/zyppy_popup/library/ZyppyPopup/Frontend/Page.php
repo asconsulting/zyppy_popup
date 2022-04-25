@@ -92,6 +92,7 @@ class Page extends Contao_Frontend
 						$objPopupWrapperTemplate = new FrontendTemplate('fe_popup_wrapper');
 						$objPopupWrapperTemplate->popup = 1;
 						$objPopupWrapperTemplate->popupUuid = $arrModule['mod']->popupUuid;
+						$objPopupWrapperTemplate->popupClass = $arrModule['mod']->popupClass;
 						$objPopupWrapperTemplate->popupDelay = $arrModule['mod']->popupDelay;
 						$objPopupWrapperTemplate->popupReshowDelay = $arrModule['mod']->popupReshowDelay;
 						$objPopupWrapperTemplate->popupScrollTrigger = $arrModule['mod']->popupScrollTrigger;
