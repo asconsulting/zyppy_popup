@@ -24,7 +24,7 @@
 <?php if (!in_array('system/modules/zyppy_popup/assets/js/popup.js', $GLOBALS['TL_JAVASCRIPT']) && !$this->popupAccept) {$GLOBALS['TL_JAVASCRIPT'][] = 'system/modules/zyppy_popup/assets/js/popup.js';} ?>
 <?php if (!in_array('system/modules/zyppy_popup/assets/js/popup_accept.js', $GLOBALS['TL_JAVASCRIPT']) && $this->popupAccept) {$GLOBALS['TL_JAVASCRIPT'][] = 'system/modules/zyppy_popup/assets/js/popup_accept.js';} ?>
 <div class="popup_frame pre_init<?php echo ($this->popupUuid ? ' popup_' .$this->popupUuid : '') ?><?php echo ($this->popupClass ? ' ' .$this->popupClass : '') ?>"<?php echo ($this->popupUuid ? ' puid="' .$this->popupUuid .'"' : '') ?><?php echo ($this->popupDelay ? ' pdelay="' .$this->popupDelay .'"' : '') ?><?php echo ($this->popupReshowDelay ? ' rdelay="' .$this->popupReshowDelay .'"' : '') ?><?php echo ($this->popupScrollTrigger ? ' strigger="' .$this->popupScrollTrigger .'"' : '') ?><?php echo ($this->popupFadeDuration ? ' fduration="' .$this->popupFadeDuration .'"' : '') ?><?php echo ($this->popupTrigger ? ' ptrigger="' .$this->popupTrigger .'"' : '') ?><?php echo ($this->popupRejectUrl ? ' rejecturl="' .$this->popupRejectUrl .'"' : '') ?>>
-<div class='popup_inside'>
+<div class='popup_inside<?php echo ($this->popupClass ? ' ' .$this->popupClass : '') ?>'>
 <?php if ($this->popupAddClose): ?><button class='close' href='#'>Close</button><?php endif; ?>
 <?php endif; ?>	
   <div class="<?= $this->class ?> block"<?= $this->cssID ?><?php if ($this->style): ?> style="<?= $this->style ?>"<?php endif; ?>>
