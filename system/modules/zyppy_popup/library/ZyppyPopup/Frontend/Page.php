@@ -40,7 +40,7 @@ class Page extends Contao_Frontend
 		// Filter the disabled modules
 		foreach ($arrModules as $module)
 		{
-			if (array_key_exists('enable', $module['enable']) && $module['enable'])
+			if (array_key_exists('enable', $module) && $module['enable'])
 			{
 				$arrModuleIds[] = $module['mod'];
 			}
