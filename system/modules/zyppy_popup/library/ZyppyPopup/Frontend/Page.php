@@ -33,14 +33,14 @@ class Page extends Contao_Frontend
 		// Initialize modules and sections
 		$arrCustomSections = $objPage->Template->sections;
 		$arrCustomSections['popup'] = ''; // Unset the Popup section because we are going to regenerate it with the propper wrappers.
-		$arrModules = StringUtil::deserialize($objLayout->modules);
+		$arrModules = StringUtil::deserialize($objLayout->modules, TRUE);
 
 		$arrModuleIds = array();
 
 		// Filter the disabled modules
 		foreach ($arrModules as $module)
 		{
-			if ($module['enable'])
+			if (array_key_exists('enable', $module['enable']) && $module['enable'])
 			{
 				$arrModuleIds[] = $module['mod'];
 			}
