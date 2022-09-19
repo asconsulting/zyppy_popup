@@ -18,7 +18,7 @@ foreach($GLOBALS['TL_DCA']['tl_module']['palettes'] as $key => $value) {
 	$GLOBALS['TL_DCA']['tl_module']['palettes'][$key] = str_replace(',type', ',type;{popup_legend},popup', $value);
 }	
 
-if ($GLOBALS['TL_DCA']['tl_module']['palettes']['zyppy_search']) {
+if (array_key_exists('zyppy_search', $GLOBALS['TL_DCA']['tl_module']['palettes'])) {
 	$GLOBALS['TL_DCA']['tl_module']['palettes']['zyppy_search'] = str_replace(',disableAjax;', ',disableAjax,popupClear;', $GLOBALS['TL_DCA']['tl_module']['palettes']['zyppy_search']);
 }
 $GLOBALS['TL_DCA']['tl_module']['palettes']['__selector__'][] = 'popup';
