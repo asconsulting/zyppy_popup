@@ -64,7 +64,7 @@ class Page extends Contao_Frontend
 			foreach ($arrModules as $arrModule)
 			{
 				// Disabled module
-				if (!BE_USER_LOGGED_IN && !array_key_exists('enable', $arrModule) && !$arrModule['enable'])
+				if (!BE_USER_LOGGED_IN && (!array_key_exists('enable', $arrModule) || !$arrModule['enable']))
 				{
 					continue;
 				}
