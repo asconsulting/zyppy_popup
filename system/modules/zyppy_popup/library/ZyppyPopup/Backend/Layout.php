@@ -29,7 +29,7 @@ class Layout extends Contao_Backend
 		$objDatabase = Database::getInstance()->execute("SELECT id, sections FROM tl_layout WHERE sections NOT LIKE '?s:2:\"id\";s:5:\"popup\";?'");
 		if ($objDatabase) {
 			while ($objDatabase->next()) {
-				$arrSections = StringUtil::deserialize($objDatabase->sections);
+				$arrSections = StringUtil::deserialize($objDatabase->sections, true);
 				if (!is_array($arrSections)) {
 					$arrSections = array();
 				}
@@ -56,7 +56,7 @@ class Layout extends Contao_Backend
 
 	public function injectPopupSection($varValue, DataContainer $dc)
 	{
-		$arrSections = StringUtil::deserialize($varValue);
+		$arrSections = StringUtil::deserialize($varValue, true);
 		$boolInject = true;
 		foreach($arrSections as $intIndex => $arrSection) {
 			if ($arrSection['id'] == 'popup') {

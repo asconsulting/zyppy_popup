@@ -33,7 +33,7 @@ class Page extends Contao_Frontend
 		// Initialize modules and sections
 		$arrCustomSections = $objPage->Template->sections;
 		$arrCustomSections['popup'] = ''; // Unset the Popup section because we are going to regenerate it with the propper wrappers.
-		$arrModules = StringUtil::deserialize($objLayout->modules, TRUE);
+		$arrModules = StringUtil::deserialize($objLayout->modules, true);
 
 		$arrModuleIds = array();
 

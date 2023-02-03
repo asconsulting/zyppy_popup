@@ -76,7 +76,7 @@ class Module extends Contao_Backend
 					continue;
 				}
 
-				$arrModules = \StringUtil::deserialize($objLayout->modules);
+				$arrModules = \StringUtil::deserialize($objLayout->modules, true);
 
 				if (empty($arrModules) || !\is_array($arrModules))
 				{
@@ -103,7 +103,7 @@ class Module extends Contao_Backend
 
 			while ($objLayout->next())
 			{
-				$arrCustom = \StringUtil::deserialize($objLayout->sections);
+				$arrCustom = \StringUtil::deserialize($objLayout->sections, true);
 
 				// Add the custom layout sections
 				if (!empty($arrCustom) && \is_array($arrCustom))
