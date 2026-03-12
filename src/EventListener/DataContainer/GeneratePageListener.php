@@ -84,12 +84,12 @@ class GeneratePageListener
 				{
 					if ($arrModule['mod']->popup) {
 						if ($arrModule['mod']->popupAccept) {
-							if (!in_array('bundles/zyppy_popup/js/popup_accept.js', $GLOBALS['TL_JAVASCRIPT'])) { 
-								$GLOBALS['TL_JAVASCRIPT'][] = 'bundles/zyppy_popup/js/popup_accept.js';
+							if (!in_array('bundles/zyppypopup/js/popup_accept.js', $GLOBALS['TL_JAVASCRIPT'])) { 
+								$GLOBALS['TL_JAVASCRIPT'][] = 'bundles/zyppypopup/js/popup_accept.js';
 							}
 						} else {
-							if (!in_array('bundles/zyppy_popup/js/popup.js', $GLOBALS['TL_JAVASCRIPT'])) { 
-								$GLOBALS['TL_JAVASCRIPT'][] = 'bundles/zyppy_popup/js/popup.js';
+							if (!in_array('bundles/zyppypopup/js/popup.js', $GLOBALS['TL_JAVASCRIPT'])) { 
+								$GLOBALS['TL_JAVASCRIPT'][] = 'bundles/zyppypopup/js/popup.js';
 							}
 						}
 						
