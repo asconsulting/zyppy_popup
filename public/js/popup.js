@@ -28,12 +28,12 @@
 				$(this).css('display', 'none');
 				
 				var popup = $(this);
-				var puid = $(this).attr('puid');
-				var popup_delay = $(this).attr('pdelay');					// Milliseconds
-				var reshow_delay = parseInt($(this).attr('rdelay'));		// Minutes
-				var scroll_trigger = parseInt($(this).attr('strigger'));	// Pixels
-				var fade_duration = parseInt($(this).attr('fduration'));	// Milliseconds
-				var popup_trigger = $(this).attr('ptrigger');				// CSS Selector
+				var puid = $(this).data('puid');
+				var popup_delay = $(this).data('pdelay');					// Milliseconds
+				var reshow_delay = parseInt($(this).data('rdelay'));		// Minutes
+				var scroll_trigger = parseInt($(this).data('strigger'));	// Pixels
+				var fade_duration = parseInt($(this).data('fduration'));	// Milliseconds
+				var popup_trigger = $(this).data('ptrigger');				// CSS Selector
 
 				var popup_timer = false;
 				var scroll_start = false;
