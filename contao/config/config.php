@@ -8,10 +8,5 @@
  * @package    asconsulting/zyppy_popup
  * @link       https://andrewstevens.consulting
  */
-
  
  
-/**
- * Hooks
- */
-$GLOBALS['TL_HOOKS']['generatePage'][] 		= array('ZyppyPopup\Frontend\Page', 'generatePage');
