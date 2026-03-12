@@ -13,55 +13,17 @@
  
 namespace ZyppyPopup\Backend;
 
+
 use Contao\ArticleModel;
 use Contao\Backend as Contao_Backend;
 use Contao\DataContainer;
 use Contao\LayoutModel;
 use Contao\PageModel;
+use Contao\StringUtil;
 
 
 class Article extends Contao_Backend
 {
-	
-	public function checkSection(DataContainer $dc) 
-	{
-		$objArticle = ArticleModel::findByPk($dc->id);
-		if ($objArticle) {
-			if ($objArticle->popup == '1' && $objArticle->inColumn != 'popup') {
-				$objArticle->inColumn = 'popup';
-				$objArticle->save();
-			} elseif ($objArticle->popup != '1' && $objArticle->inColumn == 'popup') {
-				$objArticle->inColumn = 'main';
-				$objArticle->save();
-			}	
-		}
-	}
-	
-	
-	public function generateArticleUuid($varValue, DataContainer $dc)
-	{
-		if ($dc->activeRecord->popup) {
-			$autoUuid = false;
-	
-			// Generate an alias if there is none
-			if ($varValue == '')
-			{
-				$autoUuid = true;
-				$varValue = uniqid('p');
-			}
-	
-			$objUuid = $this->Database->prepare("SELECT id FROM tl_article WHERE popupUuid=?")
-									   ->execute($dc->id, $varValue);
-	
-			if ($objUuid->numRows > 1)
-			{
-				$varValue .= '-' . $dc->id;
-			}
-	
-			return $varValue;
-		}
-	}
-	
 	
 	/**
 	 * Return all active layout sections as array
@@ -93,7 +55,7 @@ class Article extends Contao_Backend
 					continue;
 				}
 
-				$arrModules = \StringUtil::deserialize($objLayout->modules, true);
+				$arrModules = StringUtil::deserialize($objLayout->modules, true);
 
 				if (empty($arrModules) || !\is_array($arrModules))
 				{
@@ -116,11 +78,11 @@ class Article extends Contao_Backend
 		else
 		{
 			$arrSections = array('header', 'left', 'right', 'main', 'footer', 'popup');
-			$objLayout = $this->Database->query("SELECT sections FROM tl_layout WHERE sections!=''");
+			$objLayout = Database::getInstance()->query("SELECT sections FROM tl_layout WHERE sections!=''");
 
 			while ($objLayout->next())
 			{
-				$arrCustom = \StringUtil::deserialize($objLayout->sections, true);
+				$arrCustom = StringUtil::deserialize($objLayout->sections, true);
 
 				// Add the custom layout sections
 				if (!empty($arrCustom) && \is_array($arrCustom))

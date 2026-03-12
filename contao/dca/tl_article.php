@@ -9,11 +9,8 @@
  * @link       https://andrewstevens.consulting
  */
 
- 
 
-$GLOBALS['TL_DCA']['tl_article']['config']['onsubmit_callback'][] 	= array('ZyppyPopup\Backend\Article', 'checkSection');
 
- 
 /**
  * Palettes
  */
@@ -28,7 +25,7 @@ $GLOBALS['TL_DCA']['tl_article']['subpalettes']['popupAccept'] 	= 'popupRejectUr
 /**
  * Fields
  */
-$GLOBALS['TL_DCA']['tl_article']['fields']['inColumn']['options_callback'] 	= array('ZyppyPopup\Backend\Article', 'getActiveLayoutSections');
+$GLOBALS['TL_DCA']['tl_article']['fields']['inColumn']['options_callback'] = array('ZyppyPopup\Backend\Article', 'getActiveLayoutSections');
 
 
 $GLOBALS['TL_DCA']['tl_article']['fields']['popup'] = array(
@@ -43,10 +40,6 @@ $GLOBALS['TL_DCA']['tl_article']['fields']['popupUuid'] = array
 	'label'                   => &$GLOBALS['TL_LANG']['tl_article']['popupUuid'],
 	'inputType'               => 'text',
 	'eval'                    => array('rgxp'=>'alias', 'doNotCopy'=>true, 'maxlength'=>128, 'tl_class'=>'w50'),
-	'save_callback' => array
-	(
-		array('ZyppyPopup\Backend\Article', 'generateArticleUuid')
-	),
 	'sql'                     => "varchar(255) BINARY NOT NULL default ''"
 );
 
