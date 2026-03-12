@@ -66,7 +66,9 @@ class GeneratePageListener
 			foreach ($arrModules as $arrModule)
 			{
 				// Disabled module
-				if (!BE_USER_LOGGED_IN && (!array_key_exists('enable', $arrModule) || !$arrModule['enable']))
+				
+				$objRequest = System::getContainer()->get('request_stack')->getCurrentRequest();
+				if ($objRequest && !System::getContainer()->get('contao.routing.scope_matcher')->isBackendRequest($objRequest) && (!array_key_exists('enable', $arrModule) || !$arrModule['enable'])) 
 				{
 					continue;
 				}
