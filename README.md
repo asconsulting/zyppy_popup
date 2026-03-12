@@ -1,5 +1,5 @@
 # Zyppy Popup
-**Popup Module for Contao 4.x**
+**Popup Module for Contao 5.x**
 
 
 

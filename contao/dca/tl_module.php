@@ -3,7 +3,7 @@
 /**
  * Zyppy Popup
  *
- * Copyright (C) 2018-2022 Andrew Stevens Consulting
+ * Copyright (C) 2018-2026 Andrew Stevens Consulting
  *
  * @package    asconsulting/zyppy_popup
  * @link       https://andrewstevens.consulting
@@ -47,10 +47,6 @@ $GLOBALS['TL_DCA']['tl_module']['fields']['popupUuid'] = array
 	'search'                  => true,
 	'inputType'               => 'text',
 	'eval'                    => array('rgxp'=>'alias', 'doNotCopy'=>true, 'maxlength'=>128, 'tl_class'=>'w50'),
-	'save_callback' => array
-	(
-		array('ZyppyPopup\Backend\Module', 'generateModuleUuid')
-	),
 	'sql'                     => "varchar(255) BINARY NOT NULL default ''"
 );
 

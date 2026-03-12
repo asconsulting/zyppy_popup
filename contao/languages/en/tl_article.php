@@ -3,7 +3,7 @@
 /**
  * Zyppy Popup
  *
- * Copyright (C) 2018-2022 Andrew Stevens Consulting
+ * Copyright (C) 2018-2026 Andrew Stevens Consulting
  *
  * @package    asconsulting/zyppy_popup
  * @link       https://andrewstevens.consulting
@@ -25,7 +25,7 @@ $GLOBALS['TL_LANG']['tl_article']['popupTrigger'] 			= array("Trigger", "CSS sel
 $GLOBALS['TL_LANG']['tl_article']['popupUuid'] 				= array("Unique ID", "Auto generated unique ID for popup.");
 $GLOBALS['TL_LANG']['tl_article']['popupAddClose'] 			= array("Add Close Button", "Add a close button to the popup.");
 $GLOBALS['TL_LANG']['tl_article']['popupAccept'] 			= array("Accept Popup", "User must accept popup.");
-$GLOBALS['TL_LANG']['tl_article']['popupRejectUrl'] 			= array("Popup Reject", "Where to redirect user if popup is rejected.");
+$GLOBALS['TL_LANG']['tl_article']['popupRejectUrl'] 		= array("Popup Reject", "Where to redirect user if popup is rejected.");
 
 /**
  * Legends

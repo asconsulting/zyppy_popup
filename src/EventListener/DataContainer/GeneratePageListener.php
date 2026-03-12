@@ -3,31 +3,33 @@
 /**
  * Zyppy Popup
  *
- * Copyright (C) 2018-2022 Andrew Stevens Consulting
+ * Copyright (C) 2018-2026 Andrew Stevens Consulting
  *
  * @package    asconsulting/zyppy_popup
  * @link       https://andrewstevens.consulting
  */
 
- 
- 
-namespace ZyppyPopup\Frontend;
 
-use Contao\Frontend as Contao_Frontend;
+
+namespace ZyppyPopup\EventListener\DataContainer;
+
+use Contao\CoreBundle\DependencyInjection\Attribute\AsHook;
+use Contao\Database;
+use Contao\DataContainer;
 use Contao\FrontendTemplate;
+use Contao\PageRegular;
 use Contao\LayoutModel;
 use Contao\ModuleModel;
-use Contao\PageRegular;
+use Contao\PageModel;
 use Contao\StringUtil;
 use Contao\System;
 
 
-class Page extends Contao_Frontend
+#[AsHook('generatePage')]
+class GeneratePageListener
 {
-	
-	public function generatePage(&$objPageModel, $objLayout, &$objPage)
-	{
-		
+    public function __invoke(PageModel $objPageModel, LayoutModel $objLayout, PageRegular $objPage): void
+    {
 		$objLayout = $this->getPageLayout($objPageModel);
 		
 		// Initialize modules and sections
@@ -80,12 +82,12 @@ class Page extends Contao_Frontend
 				{
 					if ($arrModule['mod']->popup) {
 						if ($arrModule['mod']->popupAccept) {
-							if (!in_array('system/modules/zyppy_popup/assets/js/popup_accept.js', $GLOBALS['TL_JAVASCRIPT'])) { 
-								$GLOBALS['TL_JAVASCRIPT'][] = 'system/modules/zyppy_popup/assets/js/popup_accept.js';
+							if (!in_array('bundles/zyppy_popup/js/popup_accept.js', $GLOBALS['TL_JAVASCRIPT'])) { 
+								$GLOBALS['TL_JAVASCRIPT'][] = 'bundles/zyppy_popup/js/popup_accept.js';
 							}
 						} else {
-							if (!in_array('system/modules/zyppy_popup/assets/js/popup.js', $GLOBALS['TL_JAVASCRIPT'])) { 
-								$GLOBALS['TL_JAVASCRIPT'][] = 'system/modules/zyppy_popup/assets/js/popup.js';
+							if (!in_array('bundles/zyppy_popup/js/popup.js', $GLOBALS['TL_JAVASCRIPT'])) { 
+								$GLOBALS['TL_JAVASCRIPT'][] = 'bundles/zyppy_popup/js/popup.js';
 							}
 						}
 						
@@ -121,15 +123,15 @@ class Page extends Contao_Frontend
 	 * @param PageModel $objPage
 	 *
 	 * @return LayoutModel
-	 */
+	 */	
 	protected function getPageLayout($objPage)
 	{
-		$objLayout = LayoutModel::findByPk($objPage->layout);
+		$objLayout = LayoutModel::findById($objPage->layout);
 
 		// Die if there is no layout
 		if (null === $objLayout)
 		{
-			$this->log('Could not find layout ID "' . $objPage->layout . '"', __METHOD__, ContaoContext::ERROR);
+			System::getContainer()->get('monolog.logger.contao.error')->error('Could not find layout ID "' . $objPage->layout . '"');
 
 			throw new NoLayoutSpecifiedException('No layout specified');
 		}
@@ -142,12 +144,10 @@ class Page extends Contao_Frontend
 		{
 			foreach ($GLOBALS['TL_HOOKS']['getPageLayout'] as $callback)
 			{
-				$this->import($callback[0]);
-				$this->{$callback[0]}->{$callback[1]}($objPage, $objLayout, $this);
+				System::importStatic($callback[0])->{$callback[1]}($objPage, $objLayout, $this);
 			}
 		}
 
 		return $objLayout;
 	}
-	
 }

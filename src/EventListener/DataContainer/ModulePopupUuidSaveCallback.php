@@ -19,8 +19,8 @@ use Contao\Database;
 use Contao\DataContainer;
 
 
-#[AsCallback(table: 'tl_article', target: 'fields.popupUuid.save')]
-class ArticlePopupUuidSaveCallback
+#[AsCallback(table: 'tl_module', target: 'fields.popupUuid.save')]
+class ModulePopupUuidSaveCallback
 {
     public function __invoke($varValue, DataContainer $dc)
 	{
@@ -34,7 +34,8 @@ class ArticlePopupUuidSaveCallback
 				$varValue = uniqid('p');
 			}
 	
-			$objUuid = Database::getInstance()->prepare("SELECT id FROM tl_article WHERE popupUuid=?")->execute($dc->id, $varValue);
+			$objUuid = Database::getInstance()->prepare("SELECT id FROM tl_module WHERE popupUuid=?")
+									   ->execute($dc->id, $varValue);
 	
 			if ($objUuid->numRows > 1)
 			{

@@ -3,7 +3,7 @@
 /**
  * Zyppy Popup
  *
- * Copyright (C) 2018-2022 Andrew Stevens Consulting
+ * Copyright (C) 2018-2026 Andrew Stevens Consulting
  *
  * @package    asconsulting/zyppy_popup
  * @link       https://andrewstevens.consulting
@@ -22,29 +22,6 @@ use Contao\PageModel;
 class Module extends Contao_Backend
 {
 	
-	public function generateModuleUuid($varValue, DataContainer $dc)
-	{
-		if ($dc->activeRecord->popup) {
-			$autoUuid = false;
-	
-			// Generate an alias if there is none
-			if ($varValue == '')
-			{
-				$autoUuid = true;
-				$varValue = uniqid('p');
-			}
-	
-			$objUuid = $this->Database->prepare("SELECT id FROM tl_module WHERE popupUuid=?")
-									   ->execute($dc->id, $varValue);
-	
-			if ($objUuid->numRows > 1)
-			{
-				$varValue .= '-' . $dc->id;
-			}
-	
-			return $varValue;
-		}
-	}
 	
 	/**
 	 * Return all active layout sections as array
