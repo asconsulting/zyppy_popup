@@ -34,7 +34,7 @@ class ModulePopupUuidSaveCallback
 				$varValue = uniqid('p');
 			}
 	
-			$objUuid = Database::getInstance()->prepare("SELECT id FROM tl_module WHERE popupUuid=?")
+			$objUuid = Database::getInstance()->prepare("SELECT id FROM tl_module WHERE id!=? AND popupUuid=?")
 									   ->execute($dc->id, $varValue);
 	
 			if ($objUuid->numRows > 1)
